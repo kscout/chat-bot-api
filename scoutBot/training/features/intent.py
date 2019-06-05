@@ -5,6 +5,11 @@ import os
 class Intent:
 
     def create_intent(self, intentData):
+        """
+
+        :param intentData:
+        :return:
+        """
         response = config.service.create_intent(intentData)
         return json.dumps(response)
 
@@ -22,6 +27,7 @@ class Intent:
 
     def delete_intent(self, intent):
         response= config.service.delete_intent(workspace_id=os.environ['WORKSPACE_ID'], intent=intent)
+        return
 
 
 
