@@ -1,4 +1,4 @@
-import config
+from scoutBot import config
 import json
 import os
 

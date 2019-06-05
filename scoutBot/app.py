@@ -1,6 +1,6 @@
 from flask import Flask
 from flask import request
-import message
+from scoutBot import message
 
 app = Flask(__name__)
 

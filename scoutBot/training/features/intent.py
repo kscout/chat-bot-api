@@ -1,4 +1,4 @@
-import config
+from scoutBot import config
 import json
 import os
 
@@ -22,7 +22,7 @@ class Intent:
         return json.dumps(response)
 
     def get_intent(self,intent):
-        response =  config.service.get_intent(workspace_id=os.environ['WORKSPACE_ID'], intent=intent,export=True)
+        response =  config.service.get_intent(workspace_id=os.environ['WORKSPACE_ID'], intent=intent, export=True)
         return json.dumps(response)
 
     def delete_intent(self, intent):

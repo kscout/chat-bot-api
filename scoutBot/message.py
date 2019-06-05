@@ -1,8 +1,4 @@
-import ibm_watson
-import os
-import json
-import config
-import search
+from scoutBot import config, search
 import os
 
 def process_message(message):
