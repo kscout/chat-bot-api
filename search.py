@@ -4,6 +4,7 @@ from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer as ps
 from nltk.stem.wordnet import WordNetLemmatizer as wnl
 
+
 def process_text(message):
 
     #Create Stop words
@@ -32,6 +33,13 @@ def process_text(message):
     return (text)
 
 
-# def search_apps(message):
+def search_apps(message):
+    list_of_keywords = process_text(message)
+
+    #call to search api with list of keywords
+    response = ''
+
+    return response
+
 
 
