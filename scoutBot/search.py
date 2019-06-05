@@ -21,13 +21,14 @@ def process_text(message):
     text = re.sub("(\\d|\\W)+", " ", text)
 
     #Create tokens
-    text = set(nltk.word_tokenize(text))
-
-    # Stemming
-    text = [ps.stem(word) for word in text if not word in
+    text = list(set(nltk.word_tokenize(text)))
+    print("in preprocessing")
+    print(text)
+    # # Stemming
+    text = [ps().stem(word) for word in text if not word in
                                                         stop_words]
     # Lemmatization
-    text = [wnl.lemmatize(word) for word in text if not word in
+    text = [wnl().lemmatize(word) for word in text if not word in
                                                         stop_words]
 
     return (text)
@@ -37,7 +38,7 @@ def search_apps(message):
     list_of_keywords = process_text(message)
 
     #call to search api with list of keywords
-    response = ''
+    response = 'searching..'
 
     return response
 

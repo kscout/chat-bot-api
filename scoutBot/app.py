@@ -5,14 +5,19 @@ from scoutBot import message
 app = Flask(__name__)
 
 
-@app.route('/message1/<message_text>', methods = ['GET', 'POST'])
-def receive_messages(message_text):
+@app.route('/messages', methods = ['GET', 'POST'])
+def receive_messages():
 
     if request.method == 'POST':
-        return message.process_message(message_text)
+        message_text = request.get_json()['text']
+        print(message_text)
+        # print(message.process_message(message_text))
+        return (message.process_message(message_text))
     else:
-        return message
+        return ("No message received")
 
 
 if __name__ == '__main__':
     app.run()
+
+

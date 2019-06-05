@@ -14,18 +14,26 @@ def process_message(message):
         input= message_input).get_result()
 
 
-    # Return generic output
-    if response['output']['generic']:
-        if response['output']['generic'][0]['response_type'] == 'text':
-            return response['output']['generic'][0]['text']
 
     # Identify actions in response response after action
+    print(response)
+
     if 'actions' in response['output'] and response['output']['actions'][0]['type'] == 'client':
+        print("in action")
         if('search' == response['output']['actions'][0]['name']):
+            print("searching")
+
             return search.search_apps(message)
 
         #Return Functions not yet defined
         elif('deploy' == response['output']['actions'][0]['name']):
             return
-        else:
-            return
+
+    # Return generic output
+    if response['output']['generic']:
+        if response['output']['generic'][0]['response_type'] == 'text':
+            return response['output']['generic'][0]['text']
+        if response['output']['generic'][0]['options']:
+            return str(response['output']['generic'][0]['options'])
+
+
