@@ -1,24 +1,23 @@
 from flask import Flask
 from flask import request
-from scoutBot import message
+from scoutBot import message,errors
 
 app = Flask(__name__)
 
 
-@app.route('/messages', methods = ['GET', 'POST'])
-def receive_messages():
+# Function to receive messages from client application
 
-# Handle messages from client
+@app.route('/messages', methods=['GET', 'POST'])
+def receive_messages() -> str:
     if request.method == 'POST':
-        message_text = request.get_json()['text']
-        return (message.process_message(message_text))
+        try:
+            message_text = request.get_json()['text']
+            return message.process_message(message_text)
+        except IndexError:
+            return errors.INVALID_FORMAT_ERR
     else:
-        return ("No message received")
+        return errors.EMPTY_MESSAGE_ERR
 
 
 if __name__ == '__main__':
     app.run()
-
-
-#TODO: Error Handling
-#TODO: Deployment Script
