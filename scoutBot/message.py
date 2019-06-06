@@ -1,5 +1,6 @@
 from scoutBot import config, search
 import os
+import json
 
 def process_message(message):
     # User input
@@ -32,8 +33,8 @@ def process_message(message):
     # Return generic output
     if response['output']['generic']:
         if response['output']['generic'][0]['response_type'] == 'text':
-            return response['output']['generic'][0]['text']
+            return json.dumps(response['output']['generic'][0])
         if response['output']['generic'][0]['options']:
-            return str(response['output']['generic'][0]['options'])
+            return json.dumps(response['output']['generic'][0])
 
 

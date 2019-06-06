@@ -8,10 +8,9 @@ app = Flask(__name__)
 @app.route('/messages', methods = ['GET', 'POST'])
 def receive_messages():
 
+# Handle messages from client
     if request.method == 'POST':
         message_text = request.get_json()['text']
-        print(message_text)
-        # print(message.process_message(message_text))
         return (message.process_message(message_text))
     else:
         return ("No message received")
@@ -21,3 +20,5 @@ if __name__ == '__main__':
     app.run()
 
 
+#TODO: Error Handling
+#TODO: Deployment Script
