@@ -2,7 +2,22 @@ from scoutBot import config, search
 import os
 import json
 
-def process_message(message):
+
+def identify_actions(response: json, message: str) -> str:
+    if 'actions' in response['output'] and response['output']['actions'][0]['type'] == 'client':
+        if 'search' == response['output']['actions'][0]['name']:
+            return search.search_apps(message)
+
+
+def identify_generic_output(response: json) -> str:
+    if response['output']['generic']:
+        if response['output']['generic'][0]['response_type'] == 'text':
+            return json.dumps(response['output']['generic'][0])
+        if response['output']['generic'][0]['options']:
+            return json.dumps(response['output']['generic'][0])
+
+
+def process_message(message: str) -> str:
     # User input
     message_input = {
         'message_type:': 'text',
@@ -12,29 +27,6 @@ def process_message(message):
     # Response from watson api
     response = config.service.message(
         workspace_id=os.environ['WORKSPACE_ID'],
-        input= message_input).get_result()
+        input=message_input).get_result()
 
-
-
-    # Identify actions in response response after action
-    print(response)
-
-    if 'actions' in response['output'] and response['output']['actions'][0]['type'] == 'client':
-        print("in action")
-        if('search' == response['output']['actions'][0]['name']):
-            print("searching")
-
-            return search.search_apps(message)
-
-        #Return Functions not yet defined
-        elif('deploy' == response['output']['actions'][0]['name']):
-            return
-
-    # Return generic output
-    if response['output']['generic']:
-        if response['output']['generic'][0]['response_type'] == 'text':
-            return json.dumps(response['output']['generic'][0])
-        if response['output']['generic'][0]['options']:
-            return json.dumps(response['output']['generic'][0])
-
-
+    return identify_actions(response, message) or identify_generic_output(response)

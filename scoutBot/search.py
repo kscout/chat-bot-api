@@ -1,49 +1,43 @@
 import re
+from typing import List
 import nltk
 from nltk.corpus import stopwords
-from nltk.stem.porter import PorterStemmer as ps
 from nltk.stem.wordnet import WordNetLemmatizer as wnl
 import requests
+from scoutBot import errors
+
+CUSTOMIZED_STOP_WORDS: List[str] = ["search", "want", "like", "apps"]
+
 
 # Process text to send to app-api
-def process_text(message):
-
-    #Create Stop words
+def process_text(message: str) -> str:
+    # Create Stop words
     stop_words = (stopwords.words("english"))
-    stop_words += ["search", "want", "like", "apps"]
+    stop_words += CUSTOMIZED_STOP_WORDS
 
-    #Remove punctuation
-    text = re.sub('[^a-zA-Z]', ' ', message)
+    # Remove punctuation
+    text = re.sub("[^a-zA-Z]", ' ', message)
 
     # Convert to lowercase
     text = text.lower()
 
-    # remove special characters and digits
-    text = re.sub("(\\d|\\W)+", " ", text)
+    # remove digits, characters
+    text = re.sub('(\\d|\\W)+', " ", text)
 
-    #Create tokens
+    # Create tokens
     text = list(set(nltk.word_tokenize(text)))
-    print("in preprocessing")
-    print(text)
-    # # Stemming
-    text = [ps().stem(word) for word in text if not word in
-                                                        stop_words]
-    # Lemmatization
-    text = [wnl().lemmatize(word) for word in text if not word in
-                                                        stop_words]
-
+    text = [wnl().lemmatize(word) for word in text if not word in stop_words]
     return (text)
 
 
 # Search apps using app-api endpoint
-def search_apps(message):
-    list_of_keywords = process_text(message)
+def search_apps(message : str) -> str:
+    list_of_keywords = (process_text(message))
+    try:
+        response = requests.get("http://api.kscout.io/apps?query=" + (",".join(list_of_keywords)), verify=False)
+        return response.text
 
-    #call to search api with list of keywords
-    response = requests.get("https://api.kscout.io/apps?query="+list_of_keywords[0])
-
-
-    return response.text
-
-
-
+    except ConnectionRefusedError:
+        return errors.CONNECTION_ERR
+    except:
+        return errors.NO_SUCH_APP_ERR
