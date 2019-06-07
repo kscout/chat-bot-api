@@ -2,8 +2,11 @@ from flask import Flask
 from flask import request
 import processmessage
 from config import errors
-
+import nltk
 app = Flask(__name__)
+
+# Setting up NLTK
+nltk.data.path.append('/srv/bot_api/nltk_data/')
 
 
 # Function to receive messages from client application
@@ -21,4 +24,4 @@ def receive_messages() -> str:
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True, host= '0.0.0.0',port=5000)
