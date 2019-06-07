@@ -1,4 +1,5 @@
-from scoutBot import config, search
+from controllers import search
+from config import config
 import os
 import json
 

@@ -4,7 +4,7 @@ import nltk
 from nltk.corpus import stopwords
 from nltk.stem.wordnet import WordNetLemmatizer as wnl
 import requests
-from scoutBot import errors
+from config import errors
 
 CUSTOMIZED_STOP_WORDS: List[str] = ["search", "want", "like", "apps"]
 

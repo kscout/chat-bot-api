@@ -1,6 +1,7 @@
 from flask import Flask
 from flask import request
-from scoutBot import message,errors
+import processmessage
+from config import errors
 
 app = Flask(__name__)
 
@@ -12,7 +13,7 @@ def receive_messages() -> str:
     if request.method == 'POST':
         try:
             message_text = request.get_json()['text']
-            return message.process_message(message_text)
+            return processmessage.process_message(message_text)
         except IndexError:
             return errors.INVALID_FORMAT_ERR
     else:
