@@ -26,23 +26,18 @@ def process_message(message: str) -> str:
         'message_type:': 'text',
         'text': message
     }
-    print(message_input)
 
-    print(config.USER_CONTEXT)
     if(not config.USER_CONTEXT):
         response = config.service.message(
             workspace_id=os.environ['WORKSPACE_ID'],
             input=message_input).get_result()
     else:
         # Response from watson api
-        print("*************")
-        print(config.USER_CONTEXT)
         response = config.service.message(
             workspace_id=os.environ['WORKSPACE_ID'],
             input=message_input, context=config.USER_CONTEXT).get_result()
 
+    # Context updated for next request
     config.USER_CONTEXT = response['context']
-
-    print(response)
 
     return identify_actions(response, message) or identify_generic_output(response)
