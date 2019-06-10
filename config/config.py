@@ -24,6 +24,7 @@ ch.setFormatter(formatter)
 # add ch to logger
 logger.addHandler(ch)
 
+# Stores context of previous message
 
-
+USER_CONTEXT=""
 
