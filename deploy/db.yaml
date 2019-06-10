@@ -1,0 +1,82 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prod-db-config
+data:
+  mongoUser: prod-kscout-bot-api
+  mongoDbName: prod-kscout-bot-api
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: prod-mongo
+  labels:
+    app: mongo
+    env: prod
+spec:
+  selector:
+    matchLabels:
+      app: mongo
+      env: prod
+  serviceName: prod-mongo
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: mongo
+        env: prod
+    spec:
+      containers:
+        - name: mongo
+          image: mongo:latest
+          env:
+            - name: MONGO_INITDB_ROOT_USERNAME
+              valueFrom:
+                configMapKeyRef:
+                  name: prod-db-config
+                  key: mongoUser
+            - name: MONGO_INITDB_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-credentials
+                  key: password
+            - name: MONGO_INITDB_DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  name: prod-db-config
+                  key: mongoDbName
+          ports:
+            - name: mongo
+              containerPort: 27017
+          volumeMounts:
+            - name: mongo
+              mountPath: /data/db
+  volumeClaimTemplates:
+  - metadata:
+      name: mongo
+      labels:
+        app: mongo
+        env: prod
+    spec:
+      accessModes:
+        - ReadWriteOnce
+      resources:
+        requests:
+          storage: 5Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: prod-mongo
+  labels:
+    app: mongo
+    env: prod
+spec:
+  selector:
+    app: mongo
+    env: prod
+  ports:
+    - port: 27017
+      name: mongo
+      targetPort: mongo
+      protocol: TCP
