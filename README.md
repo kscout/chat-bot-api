@@ -35,52 +35,26 @@ Start a local MongoDB server by running:
 
 
 ## Configuration
-For local development, create a 
+For local development, create a `Wastson Assitant` instance in a IBM Cloud Catalog. The instance will be created in a `default` resource group.
+Launch the Watson Assistant using dashboard and import training data available in https://github.com/knative-scout/chat-bot-api/tree/master/training  
 
 
 Configuration is passed via environment variables.
+- `BOTUSER_KEY` : API key assigned to the bot
+- `WORKSPACE_ID` :Unique id given to the created skill
 
+You can create and inject your own training data / skill by using functions in https://github.com/knative-scout/chat-bot-api/tree/master/training/features
 
 
 ## Run
 Start the server by running:
 
+```
+pip install -r requirements.txt
+```
+
+```
+python app.py
+```
 
 # Deployment
-## Kubernetes
-1. Set secrets
-  - Create copy of `deploy/secrets.ex.yaml` named `deploy/secrets.yaml`
-  - Replace the placeholder values with the correct base64 encoded values
-2. Deploy
-   - Deploy the database:
-     ```
-	 ./deploy/deploy.sh up db
-	 ```
-   - Deploy the app API server:
-     ```
-	 ./deploy/deploy.sh up app
-	 ```
-
-## Temporary Open Shift
-The `tmpk` script wraps `kubectl` with the required arguments to connect to the
-48 hour Open Shift clusters.
-
-Set the `TMPK_TOKEN` and `TMPK_N` environment variables. See the `tmpk` file 
-for details about what to set these environment variables to.
-
-Use the `tmpk` script as if it was `kubectl`:
-
-```
-./tmpk get all
-```
-
-## GitHub
-### Webhook
-A webhook should exist for the
-[app-repository](https://github.com/knative-scout/app-repository/settings/hooks/new).  
-This webhook should send pull request events to the app pull request 
-webhook endpoint.
-
-### API Token
-Generate an API token which has repository read access only.  
-Provide to application via `APP_GH_TOKEN` environment variable.
