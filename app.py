@@ -1,8 +1,9 @@
-from flask import Flask
+from flask import Flask, Response
 from flask import request
 import processmessage
 from config import errors
 import nltk
+import json
 app = Flask(__name__)
 
 # Setting up NLTK
@@ -23,5 +24,13 @@ def receive_messages() -> str:
         return errors.EMPTY_MESSAGE_ERR
 
 
+@app.route('/health', methods=['GET', 'POST'])
+def health_probe() -> Response:
+    status={}
+    status["ok"]=True
+    return Response(json.dumps(status), status=200, mimetype='application/json')
+
+
+
 if __name__ == '__main__':
-    app.run(debug=True, host= '0.0.0.0',port=5000)
+    app.run(debug=True, host= '0.0.0.0',port=8080)
