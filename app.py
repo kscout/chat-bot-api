@@ -25,7 +25,7 @@ def receive_messages() -> str:
 
 
 @app.route('/health', methods=['GET', 'POST'])
-def health_probe() -> str:
+def health_probe() -> Response:
     status={}
     status["ok"]=True
     return Response(json.dumps(status), status=200, mimetype='application/json')
@@ -33,4 +33,4 @@ def health_probe() -> str:
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host= '0.0.0.0',port=5000)
+    app.run(debug=True, host= '0.0.0.0',port=8080)

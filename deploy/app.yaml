@@ -1,10 +1,11 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: bot-api
+  name: prod-bot-api
   namespace: kscoutbot
   labels:
     app: bot-api
+    env: prod
 spec:
   replicas: 1
   selector:
@@ -16,9 +17,11 @@ spec:
         app: bot-api
     spec:
       containers:
-        - name: bot-api
-          image: kscout/bot-api:dev-latest
+        - name: prod-bot-api
+          image: kscout/bot-api:dev-5
           env:
+            - name: APP_HTTP_ADDR
+              value: ":8080"
             - name: APP_DB_USER
               valueFrom:
                 configMapKeyRef:
@@ -46,7 +49,7 @@ spec:
                   key: workspaceid
           ports:
             - name: http
-              containerPort: 80
+              containerPort: 8080
               protocol: TCP
           imagePullPolicy: Always
           livenessProbe:
@@ -63,7 +66,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: bot-api
+  name: prod-bot-api
   namespace: kscoutbot
   labels:
     app: bot-api
@@ -80,7 +83,7 @@ spec:
 apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
-  name: bot-api
+  name: prod-bot-api
   namespace: kscoutbot
   labels:
     app: bot-api
@@ -89,7 +92,7 @@ spec:
   path: /
   to:
     kind: Service
-    name: bot-api
+    name: prod-bot-api
     weight: 100
   port:
     targetPort: http

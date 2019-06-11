@@ -6,7 +6,7 @@ DB_CONTAINER_NAME ?= kscout-bot-api-db
 DB_USER ?= kscout-dev
 DB_PASSWORD ?= secretpassword
 
-DOCKER_TAG_VERSION ?= dev-latest
+DOCKER_TAG_VERSION ?= dev-5
 DOCKER_TAG ?= kscout/bot-api:${DOCKER_TAG_VERSION}
 
 
