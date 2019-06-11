@@ -1,4 +1,4 @@
-.PHONY: docker-build docker-run docker-push db db-cli
+.PHONY: docker-cloud docker-local docker-build docker-run docker-push db db-cli
 
 
 DB_DATA_DIR ?= container-data/db
@@ -6,8 +6,12 @@ DB_CONTAINER_NAME ?= kscout-bot-api-db
 DB_USER ?= kscout-dev
 DB_PASSWORD ?= secretpassword
 
-DOCKER_TAG_VERSION ?= dev-5
+DOCKER_TAG_VERSION ?= staging-latest
 DOCKER_TAG ?= kscout/bot-api:${DOCKER_TAG_VERSION}
+
+# Build and Push to docker hub
+docker-cloud:
+	docker-build docker-push
 
 
 # build Docker image
