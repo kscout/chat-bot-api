@@ -9,4 +9,3 @@ container-data
 # Secrets
 .env
 secrets*
-imagestream.yaml
