@@ -8,7 +8,6 @@ from flask import session
 def identify_actions(response: json, message: str) -> str:
     if 'actions' in response['output'] and response['output']['actions'][0]['type'] == 'client':
         if 'search' == response['output']['actions'][0]['name']:
-            # message = response['context']['context_1']
             return search.search_apps(message)
 
 
@@ -20,7 +19,7 @@ def identify_generic_output(response: json) -> str:
             return json.dumps(response['output']['generic'][0])
 
 
-def process_message(message: str) -> str:
+def process_message(message: str):
     # User input
     message_input = {
         'message_type:': 'text',
@@ -39,5 +38,10 @@ def process_message(message: str) -> str:
 
     # Context updated for next request
     config.USER_CONTEXT = response['context']
+    actions = identify_actions(response, message)
+    text = identify_generic_output(response)
+    if actions and text:
+        mergedResponse = {**json.loads(actions), **json.loads(text)}
+        return json.dumps(mergedResponse)
 
-    return identify_actions(response, message) or identify_generic_output(response)
+    return actions or text
