@@ -1,7 +1,7 @@
 apiVersion: image.openshift.io/v1
 kind: ImageStream
 metadata:
-  name: prod-bot-api
+  name: bot-api
   labels:
     app: bot-api
 spec:
