@@ -1,6 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
-metadata:
+metad5ata:
   name: prod-bot-api
   labels:
     app: bot-api
@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: prod-bot-api
-          image: kscout/bot-api:dev-5
+          image: kscout/bot-api:latest
           env:
             - name: APP_HTTP_ADDR
               value: ":8080"
