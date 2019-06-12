@@ -1,6 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
-metad5ata:
+metadata:
   name: prod-bot-api
   labels:
     app: bot-api
