@@ -9,3 +9,5 @@ container-data
 # Secrets
 .env
 secrets*
+
+deploy.sh

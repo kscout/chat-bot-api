@@ -1,4 +1,4 @@
-.PHONY: docker-cloud docker-local docker-build docker-run docker-push db db-cli
+.PHONY: docker-cloud docker-local docker-build docker-run docker-push db db-cli production staging
 
 
 DB_DATA_DIR ?= container-data/db
@@ -8,6 +8,14 @@ DB_PASSWORD ?= secretpassword
 
 DOCKER_TAG_VERSION ?= staging-latest
 DOCKER_TAG ?= kscout/bot-api:${DOCKER_TAG_VERSION}
+
+
+NAMESPACE ?= kscoutbot
+POD ?= staging-bot-api
+
+PROD_NAMESPACE ?= kscoutbot
+PROD_POD ?= prod-bot-api
+
 
 # Build and Push to docker hub
 docker-cloud: docker-build docker-push
@@ -42,3 +50,16 @@ db:
 # Runs mongo on shell
 db-cli:
 	docker run -it --rm --net host mongo:latest mongo -u ${DB_USER} -p ${DB_PASSWORD}
+
+
+
+#Staging the app
+staging: docker-cloud staging-rollout
+
+# Deploy code to Production:
+production:
+	./deploy/deploy.sh -n ${PROD_NAMESPACE} -p ${PROD_POD} -t prod
+
+#deploy code to staging:
+staging-rollout:
+	./deploy/deploy.sh -n ${NAMESPACE} -p ${POD} -t staging
