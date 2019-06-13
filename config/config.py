@@ -28,3 +28,4 @@ logger.addHandler(ch)
 
 USER_CONTEXT=""
 
+user_map = {}
