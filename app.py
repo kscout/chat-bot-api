@@ -17,7 +17,8 @@ def receive_messages() -> str:
     if request.method == 'POST':
         try:
             message_text = request.get_json()['text']
-            return processmessage.process_message(message_text)
+            user = request.get_json()['user']
+            return processmessage.process_message(message_text,user)
         except IndexError:
             return errors.INVALID_FORMAT_ERR
     else:

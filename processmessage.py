@@ -2,7 +2,6 @@ from controllers import search
 from config import config
 import os
 import json
-from flask import session
 
 
 def identify_actions(response: json, message: str) -> str:
@@ -19,27 +18,28 @@ def identify_generic_output(response: json) -> str:
             return json.dumps(response['output']['generic'][0])
 
 
-def process_message(message: str):
+def process_message(message: str, user):
     # User input
     message_input = {
         'message_type:': 'text',
         'text': message
     }
 
-    if(not config.USER_CONTEXT):
+    if user not in config.user_map:
         response = config.service.message(
             workspace_id=os.environ['WORKSPACE_ID'],
             input=message_input).get_result()
+
     else:
-        # Response from watson api
         response = config.service.message(
             workspace_id=os.environ['WORKSPACE_ID'],
-            input=message_input, context=config.USER_CONTEXT).get_result()
+            input=message_input, context=config.user_map.get(user)).get_result()
 
-    # Context updated for next request
-    config.USER_CONTEXT = response['context']
+    config.user_map[user]= response['context']
+
     actions = identify_actions(response, message)
     text = identify_generic_output(response)
+
     if actions and text:
         mergedResponse = {**json.loads(actions), **json.loads(text)}
         return json.dumps(mergedResponse)
