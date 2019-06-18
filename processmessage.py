@@ -1,4 +1,4 @@
-from controllers import search
+from controllers import search,learn
 from config import config
 import os
 import json
@@ -8,6 +8,8 @@ def identify_actions(response: json, message: str) -> str:
     if 'actions' in response['output'] and response['output']['actions'][0]['type'] == 'client':
         if 'search' == response['output']['actions'][0]['name']:
             return search.search_apps(message)
+        if 'learn' == response['output']['actions'][0]['name']:
+            return learn.answer_query(message)
 
 
 def identify_generic_output(response: json) -> str:
@@ -39,9 +41,7 @@ def process_message(message: str, user):
 
     actions = identify_actions(response, message)
     text = identify_generic_output(response)
-
     if actions and text:
-        mergedResponse = {**json.loads(actions), **json.loads(text)}
-        return json.dumps(mergedResponse)
-
+        merged_response = {**json.loads(actions), **json.loads(text)}
+        return json.dumps(merged_response)
     return actions or text
