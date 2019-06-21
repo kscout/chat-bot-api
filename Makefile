@@ -10,10 +10,10 @@ DOCKER_TAG_VERSION ?= staging-latest
 DOCKER_TAG ?= kscout/bot-api:${DOCKER_TAG_VERSION}
 
 
-NAMESPACE ?= kscoutbot
+NAMESPACE ?= kscout
 POD ?= staging-bot-api
 
-PROD_NAMESPACE ?= kscoutbot
+PROD_NAMESPACE ?= kscout
 PROD_POD ?= prod-bot-api
 
 

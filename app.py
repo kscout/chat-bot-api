@@ -5,14 +5,12 @@ from config import errors, config
 import nltk
 import json
 
+# Setting up NLTK
+nltk.data.path.append("/srv/bot_api/nltk_data/")
+
 app = Flask(__name__)
 
-# Setting up NLTK
-# nltk.data.path.append('/srv/bot_api/nltk_data/')
-
-
 # Function to receive messages from client application
-
 @app.route('/messages', methods=['GET', 'POST'])
 def receive_messages() -> str:
     if request.method == 'POST':

@@ -33,17 +33,17 @@ spec:
             - name: APP_DB_USER
               valueFrom:
                 configMapKeyRef:
-                  name: prod-db-config
+                  name: prod-db-config-bot
                   key: mongoUser
             - name: APP_DB_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: mongo-credentials
+                  name: mongo-credentials-bot
                   key: password
             - name: APP_DB_NAME
               valueFrom:
                 configMapKeyRef:
-                  name: prod-db-config
+                  name: prod-db-config-bot
                   key: mongoDbName
             - name: API_KEY
               valueFrom:
