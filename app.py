@@ -4,14 +4,13 @@ import processmessage
 from config import errors
 import nltk
 import json
-app = Flask(__name__)
 
 # Setting up NLTK
-nltk.data.path.append('/srv/bot_api/nltk_data/')
+nltk.data.path.append("/srv/bot_api/nltk_data/")
 
+app = Flask(__name__)
 
 # Function to receive messages from client application
-
 @app.route('/messages', methods=['GET', 'POST'])
 def receive_messages() -> str:
     if request.method == 'POST':
