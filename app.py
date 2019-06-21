@@ -1,7 +1,7 @@
 from flask import Flask, Response
 from flask import request
 import processmessage
-from config import errors
+from config import errors, config
 import nltk
 import json
 
@@ -17,20 +17,26 @@ def receive_messages() -> str:
         try:
             message_text = request.get_json()['text']
             user = request.get_json()['user']
-            return processmessage.process_message(message_text,user)
+            config.logger.info(message_text)
+            return processmessage.process_message(message_text, user)
         except IndexError:
             return errors.INVALID_FORMAT_ERR
+        except Exception:
+            return errors.INVALID_FORMAT_ERR
+
     else:
         return errors.EMPTY_MESSAGE_ERR
 
 
 @app.route('/health', methods=['GET', 'POST'])
 def health_probe() -> Response:
-    status={}
-    status["ok"]=True
+    status = {}
+    status["ok"] = True
     return Response(json.dumps(status), status=200, mimetype='application/json')
 
 
-
 if __name__ == '__main__':
-    app.run(debug=True, host= '0.0.0.0',port=8080)
+
+    app.run(debug=True, host='0.0.0.0', port=8080)
+    nltk.data.path.append('/srv/bot_api/nltk_data/')
+
