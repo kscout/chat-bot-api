@@ -34,7 +34,7 @@ def process_text(message: str) -> str:
 def search_apps(message : str) -> str:
     list_of_keywords = (process_text(message))
     try:
-        response = requests.get("http://api.kscout.io/apps?query=" + (",".join(list_of_keywords)), verify=False)
+        response = requests.get("https://api.kscout.io/nsearch?query=" + (",".join(list_of_keywords)), verify=False)
         return response.text
 
     except ConnectionRefusedError:
