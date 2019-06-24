@@ -58,3 +58,187 @@ python app.py
 ```
 
 # Deployment
+
+# Examples
+
+## Search :
+
+1. Search by selecting `searching apps` option
+
+```
+>>user: Hey
+
+>>scout: Hi! I am Scout. I can help you with :
+         - Searching apps
+         - Deploy apps
+         - Learn serverless
+
+>>user: (<Selects seraching apps option>)
+
+>>scout: What type of app?
+
+>>user: serverless apps
+
+>>scout: (<List of all serverless apps>)
+         
+```
+
+2. Direct Search
+
+``` 
+>>user: get me serverless apps
+
+>>scout: (<List of all serverless apps>)
+
+```
+
+## Deploy
+
+1. Search by selecting `deploy apps` option with access to cluster
+
+```
+>>user: Hey
+
+>>scout: Hi! I am Scout. I can help you with :
+         - Searching apps
+         - Deploy apps
+         - Learn serverless
+
+>>user: (<Selects deploy apps option>)
+
+>>scout: What type of app?
+
+>>user: serverless apps
+
+>>scout: (<List of all serverless apps to deploy>)
+
+>>user: (< Selects an app from list to deploy >)
+
+>>scout: I remember the app you have selected. Please confirm that  you have knative installed on a cluster and have access to that cluster.
+
+>>user: Yes
+
+>>scout: Your app id is <App id>. 
+        < Provides command to deploy app on cluster>
+         
+```
+
+2. Direct Deploy cluster with access to cluster
+
+```
+>>user: Deploy serverless apps
+
+>>scout: (<List of all serverless apps to deploy>)
+
+>>user: (< Selects an app from list to deploy >)
+
+>>scout: I remember the app you have selected. Please confirm that  you have knative installed on a cluster and have access to that cluster.
+
+>>user: Yes
+
+>>scout: Your app id is <App id>. 
+        < Provides command to deploy app on cluster>
+         
+```
+ 
+3. Deploy with no access to cluster
+
+```
+
+>>user: Deploy serverless apps
+
+>>scout: (<List of all serverless apps to deploy>)
+
+>>user: (< Selects an app from list to deploy >)
+
+>>scout: I remember the app you have selected. Please confirm that  you have knative installed on a cluster and have access to that cluster.
+
+>>user: No, I don`t have a cluster
+
+>>scout: To learn how to get your own cluster with knative, visit https://docs.openshift.com/container-platform/3.3/getting_started/administrators.html. 
+          Do you want to save this app to deploy later?
+
+>>user: Yes (< User goes away and creates the cluster >)
+
+>>user: Deploy saved app.
+
+>>scout: Sure. Please confirm you have access to cluster.
+
+>>user: yes
+
+>>scout: Your app id is <App id>. 
+        < Provides command to deploy app on cluster>
+         
+```
+## Learn 
+
+1. Ask questions by selecting `learn serverless` option
+
+```
+>>user: Hey
+
+>>scout: Hi! I am Scout. I can help you with :
+         - Searching apps
+         - Deploy apps
+         - Learn serverless
+
+>>user: (<Selects learn serverless option>)
+
+>>scout: What do you want to learn ?
+
+>>user: What are serverless architectures?
+
+>>scout: (< Text providing an explanation and link to the resource >)
+         
+```
+
+2. Ask questions directly
+
+``` 
+>>user: What are serverless architectures?
+
+>>scout: (< Text providing an explanation and link to the resource >)
+         
+```
+
+## Start over
+
+User can ask to `start over` at any point in conversation
+
+```
+>>user: Deploy serverless apps
+
+>>scout: (<List of all serverless apps to deploy>)
+
+>>user: (< Selects an app from list to deploy >)
+
+>>scout: I remember the app you have selected. Please confirm that  you have knative installed on a cluster and have access to that cluster.
+
+>>user: start over
+
+>>scout: Hi! I am Scout. I can help you with :
+         - Searching apps
+         - Deploy apps
+         - Learn serverless
+
+
+```
+
+## Quit
+
+User can ask to `quit` at any point in conversation
+
+```
+>>user: Deploy serverless apps
+
+>>scout: (<List of all serverless apps to deploy>)
+
+>>user: (< Selects an app from list to deploy >)
+
+>>scout: I remember the app you have selected. Please confirm that  you have knative installed on a cluster and have access to that cluster.
+
+>>user: Forget it
+
+>>scout: Okay. Action aborted.
+
+```
