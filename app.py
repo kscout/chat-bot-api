@@ -15,7 +15,7 @@ app = Flask(__name__)
 # Connecting to MondoDB
 mongo = MongoClient(config.db_config["DB_HOST"], config.db_config["DB_PORT"], username=config.db_config["DB_USER"],
                     password=config.db_config["DB_PASSWORD"],)  # Connection to MongoDB
-database = config.db_config["PROJECT"]
+database = config.db_config["DB_NAME"]
 currentConversation = config.db_config["CURRENT"]
 db = mongo.database.currentConversation   # Switching to Database with name 'project'
 
