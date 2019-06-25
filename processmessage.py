@@ -22,7 +22,7 @@ def identify_generic_output(response: json) -> str:
             return json.dumps(response['output']['generic'][0])
 
 
-def process_message(message: str, user , db):
+def process_message(message: str, user, db):
     # User input
     message_input = {
         'message_type:': 'text',

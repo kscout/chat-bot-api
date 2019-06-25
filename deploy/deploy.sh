@@ -57,7 +57,7 @@ if [ "$type" == "staging" ]; then
     header_text "Starting Staging deployment on OpenShift!"
     for filename in deploy/templates/*.yaml; do
         header_text "Applying configuration $filename on $namespace"
-        sed 's/prod/staging/ ; s/bot.kscout.io/staging-bot.kscout.io/ ; s/latest/staging-latest/' $filename | kubectl -n $namespace apply -f -
+        sed 's/prod/staging/ ; s/bot.kscout.io/staging-bot.kscout.io/ ; s/bot-api:latest/bot-api:staging-latest/' $filename | kubectl -n $namespace apply -f -
     done
 fi
 
