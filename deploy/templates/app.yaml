@@ -33,7 +33,7 @@ spec:
             - name: APP_DB_USER
               valueFrom:
                 configMapKeyRef:
-                  name: prod-db-config-bot
+                  name: prod-bot-api-db-config
                   key: mongoUser
             - name: APP_DB_PASSWORD
               valueFrom:
@@ -43,7 +43,7 @@ spec:
             - name: APP_DB_NAME
               valueFrom:
                 configMapKeyRef:
-                  name: prod-db-config-bot
+                  name: prod-bot-api-db-config
                   key: mongoDbName
             - name: API_KEY
               valueFrom:

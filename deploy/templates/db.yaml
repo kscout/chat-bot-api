@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: prod-db-config-bot
+  name: prod-bot-api-db-config
 data:
   mongoUser: prod-kscout-bot-api
   mongoDbName: prod-kscout-bot-api
@@ -9,21 +9,21 @@ data:
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: prod-mongo-bot
+  name: prod-bot-api-mongo
   labels:
-    app: mongo
+    app: bot-api
     env: prod
 spec:
   selector:
     matchLabels:
-      app: mongo
+      app: bot-api
       env: prod
-  serviceName: prod-mongo-bot
+  serviceName: prod-bot-api-mongo
   replicas: 1
   template:
     metadata:
       labels:
-        app: mongo
+        app: bot-api
         env: prod
     spec:
       containers:
@@ -33,7 +33,7 @@ spec:
             - name: MONGO_INITDB_ROOT_USERNAME
               valueFrom:
                 configMapKeyRef:
-                  name: prod-db-config-bot
+                  name: prod-bot-api-db-config
                   key: mongoUser
             - name: MONGO_INITDB_ROOT_PASSWORD
               valueFrom:
@@ -43,7 +43,7 @@ spec:
             - name: MONGO_INITDB_DATABASE
               valueFrom:
                 configMapKeyRef:
-                  name: prod-db-config-bot
+                  name: prod-bot-api-db-config
                   key: mongoDbName
           ports:
             - name: mongo
@@ -55,7 +55,7 @@ spec:
   - metadata:
       name: mongo
       labels:
-        app: mongo
+        app: bot-api
         env: prod
     spec:
       accessModes:
@@ -67,13 +67,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: prod-mongo-bot
+  name: prod-bot-api-mongo
   labels:
-    app: mongo
+    app: bot-api
     env: prod
 spec:
   selector:
-    app: mongo
+    app: bot-api
     env: prod
   ports:
     - port: 27017
