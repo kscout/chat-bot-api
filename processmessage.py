@@ -29,15 +29,30 @@ def process_message(message: str, user , db):
         'text': message
     }
 
-    if user not in config.user_map:
+    entry = db.findOne({'user_id': user}, {"_id": 1})
+
+    if entry:
         response = config.service.message(
             workspace_id=os.environ['WORKSPACE_ID'],
             input=message_input).get_result()
 
     else:
+        context = entry.context
         response = config.service.message(
             workspace_id=os.environ['WORKSPACE_ID'],
-            input=message_input, context=config.user_map.get(user)).get_result()
+            input=message_input, context=context).get_result()
+
+
+
+    # if user not in config.user_map:
+    #     response = config.service.message(
+    #         workspace_id=os.environ['WORKSPACE_ID'],
+    #         input=message_input).get_result()
+    #
+    # else:
+    #     response = config.service.message(
+    #         workspace_id=os.environ['WORKSPACE_ID'],
+    #         input=message_input, context=config.user_map.get(user)).get_result()
 
     # config.user_map[user]= response['context']
 
