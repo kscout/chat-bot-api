@@ -29,7 +29,7 @@ def process_message(message: str, user, db):
         'text': message
     }
 
-    entry = db.find_one({'user_id': user}, {"_id": 1})
+    entry = db.find_one({'user_id': user})
 
     if not entry:
         response = config.service.message(
