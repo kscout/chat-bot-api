@@ -28,7 +28,7 @@ def receive_messages() -> str:
             message_text = request.get_json()['text']
             user = request.get_json()['user']
             config.logger.info(message_text)
-            return processmessage.process_message(message_text, user)
+            return processmessage.process_message(message_text, user, db)
         except IndexError:
             return errors.INVALID_FORMAT_ERR
         except Exception:

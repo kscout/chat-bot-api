@@ -1,7 +1,9 @@
 from controllers import search,learn
 from config import config
+from config.skeleton import CurrentConversation
 import os
 import json
+import jsonpickle
 
 
 def identify_actions(response: json, message: str) -> str:
@@ -20,7 +22,7 @@ def identify_generic_output(response: json) -> str:
             return json.dumps(response['output']['generic'][0])
 
 
-def process_message(message: str, user):
+def process_message(message: str, user , db):
     # User input
     message_input = {
         'message_type:': 'text',
@@ -37,7 +39,15 @@ def process_message(message: str, user):
             workspace_id=os.environ['WORKSPACE_ID'],
             input=message_input, context=config.user_map.get(user)).get_result()
 
-    config.user_map[user]= response['context']
+    # config.user_map[user]= response['context']
+
+    # creating class for json file here
+    convo = CurrentConversation(user)
+    convo.context = response['context']
+
+    #inserting json into database
+    convoJson = jsonpickle.encode(convo)
+    db.insert_one(convoJson)
 
     actions = identify_actions(response, message)
     text = identify_generic_output(response)
