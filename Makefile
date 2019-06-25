@@ -2,7 +2,7 @@
 
 
 DB_DATA_DIR ?= container-data/db
-DB_CONTAINER_NAME ?= kscout-bot-api-db
+DB_CONTAINER_NAME ?= prod-kscout-bot-api-db
 DB_USER ?= prod-kscout-bot-api
 DB_PASSWORD ?= secretpassword
 

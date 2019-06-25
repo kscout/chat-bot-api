@@ -29,7 +29,7 @@ def process_message(message: str, user , db):
         'text': message
     }
 
-    entry = db.findOne({'user_id': user}, {"_id": 1})
+    entry = db.find_one({'user_id': user}, {"_id": 1})
 
     if not entry:
         response = config.service.message(
@@ -42,27 +42,13 @@ def process_message(message: str, user , db):
             workspace_id=os.environ['WORKSPACE_ID'],
             input=message_input, context=context).get_result()
 
-
-
-    # if user not in config.user_map:
-    #     response = config.service.message(
-    #         workspace_id=os.environ['WORKSPACE_ID'],
-    #         input=message_input).get_result()
-    #
-    # else:
-    #     response = config.service.message(
-    #         workspace_id=os.environ['WORKSPACE_ID'],
-    #         input=message_input, context=config.user_map.get(user)).get_result()
-
-    # config.user_map[user]= response['context']
-
     # creating class for json file here
     convo = CurrentConversation(user)
     convo.context = response['context']
 
-    #inserting json into database
-    convoJson = jsonpickle.encode(convo)
-    db.insert_one(convoJson)
+    # inserting json into database
+    convojson = jsonpickle.encode(convo)
+    db.insert_one(convojson)
 
     actions = identify_actions(response, message)
     text = identify_generic_output(response)
