@@ -29,3 +29,12 @@ logger.addHandler(ch)
 USER_CONTEXT=""
 
 user_map = {}
+
+db_config={}
+db_config["DB_HOST"] = "localhost"
+db_config["DB_PORT"] = "27017"
+db_config["DB_USER"] = os.environ['APP_DB_USER']
+db_config["DB_PASSWORD"] = os.environ['APP_DB_PASSWORD']
+db_config["DB_NAME"] = os.environ['APP_DB_NAME']
+db_config["PROJECT"] = "bot-api-db"
+db_config["CURRENT"] = "curent-conversation"

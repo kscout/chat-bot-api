@@ -4,11 +4,21 @@ import processmessage
 from config import errors, config
 import nltk
 import json
+from pymongo import MongoClient
 
 # Setting up NLTK
 nltk.data.path.append("/srv/bot_api/nltk_data/")
 
 app = Flask(__name__)
+
+
+# Connecting to MondoDB
+mongo = MongoClient(config.db_config["DB_HOST"], config.db_config["DB_PORT"], username=config.db_config["DB_USER"],
+                    password=config.db_config["DB_PASSWORD"],)  # Connection to MongoDB
+database = config.db_config["PROJECT"]
+currentConversation = config.db_config["CURRENT"]
+db = mongo.database.currentConversation   # Switching to Database with name 'project'
+
 
 # Function to receive messages from client application
 @app.route('/messages', methods=['GET', 'POST'])
