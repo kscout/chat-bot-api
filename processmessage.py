@@ -31,7 +31,7 @@ def process_message(message: str, user , db):
 
     entry = db.findOne({'user_id': user}, {"_id": 1})
 
-    if entry:
+    if not entry:
         response = config.service.message(
             workspace_id=os.environ['WORKSPACE_ID'],
             input=message_input).get_result()

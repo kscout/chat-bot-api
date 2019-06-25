@@ -32,7 +32,7 @@ user_map = {}
 
 db_config={}
 db_config["DB_HOST"] = "localhost"
-db_config["DB_PORT"] = "27017"
+db_config["DB_PORT"] = 27017
 db_config["DB_USER"] = os.environ['MONGO_INITDB_ROOT_USERNAME']
 db_config["DB_PASSWORD"] = os.environ['MONGO_INITDB_ROOT_PASSWORD']
 db_config["DB_NAME"] = os.environ['MONGO_INITDB_DATABASE']
