@@ -30,17 +30,17 @@ spec:
         - name: mongo
           image: mongo:latest
           env:
-            - name: APP_DB_USER
+            - name: MONGO_INITDB_ROOT_USERNAME
               valueFrom:
                 configMapKeyRef:
                   name: prod-bot-api-db-config
                   key: mongoUser
-            - name: APP_DB_PASSWORD
+            - name: MONGO_INITDB_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: mongo-credentials-bot
                   key: password
-            - name: APP_DB_NAME
+            - name: MONGO_INITDB_DATABASE
               valueFrom:
                 configMapKeyRef:
                   name: prod-bot-api-db-config
