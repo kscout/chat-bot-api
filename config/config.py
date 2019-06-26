@@ -36,4 +36,4 @@ db_config["DB_PORT"] = 27017
 db_config["DB_USER"] = os.environ['APP_DB_USER']
 db_config["DB_PASSWORD"] = os.environ['APP_DB_PASSWORD']
 db_config["DB_NAME"] = os.environ['APP_DB_NAME']
-db_config["CURRENT"] = "curent_conversation"
+db_config["CURRENT"] = "curentconversation"

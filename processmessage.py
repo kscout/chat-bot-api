@@ -3,7 +3,7 @@ from config import config
 from config.skeleton import CurrentConversation
 import os
 import json
-# import jsonpickle
+import jsonpickle
 
 
 def identify_actions(response: json, message: str) -> str:
@@ -30,8 +30,6 @@ def process_message(message: str, user, db):
     }
 
     entry = db.find_one({'user_id': user})
-    config.logger.debug(entry)
-    entry = False
     if not entry:
         response = config.service.message(
             workspace_id=os.environ['WORKSPACE_ID'],
@@ -48,10 +46,11 @@ def process_message(message: str, user, db):
     convo.context = response['context']
 
     # inserting json into database
-    # convojson = jsonpickle.encode(convo)
-    convojson = json.dump(convo, default=lambda o: o.__dict__)
-    config.logger.info(convojson)
-    db.insert_one(convojson)
+    convojson = jsonpickle.encode(convo)
+    print("convojson ", str(convojson))
+
+    insertid= db.insert_one(json.loads(convojson)).inserted_id
+    print("insertid",insertid)
 
     actions = identify_actions(response, message)
     text = identify_generic_output(response)
