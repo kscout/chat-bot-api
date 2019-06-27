@@ -13,7 +13,6 @@ RUN apt-get -y install nginx \
     && apt-get -y install build-essential
 
 COPY requirements.txt /srv/bot_api/requirements.txt
-#RUN pip install --install-option="--prefix=/install" -r /srv/bot_api/requirements.txt
 RUN pip install -r /srv/bot_api/requirements.txt
 
 RUN [ "python", "-c", "import nltk; nltk.download('punkt', download_dir='/srv/bot_api/nltk_data/');nltk.download('stopwords', download_dir='/srv/bot_api/nltk_data/');nltk.download('wordnet', download_dir='/srv/bot_api/nltk_data/')" ]
