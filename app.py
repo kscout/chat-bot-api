@@ -22,7 +22,7 @@ db = client[database][currentConversation]   # Switching to Database with name '
 print(db)
 # Function to receive messages from client application
 @app.route('/messages', methods=['GET', 'POST'])
-def receive_messages() -> str:
+def receive_messages():
     if request.method == 'POST':
         try:
             message_text = request.get_json()['text']
@@ -35,7 +35,10 @@ def receive_messages() -> str:
             return errors.INVALID_FORMAT_ERR
 
     else:
-        return errors.EMPTY_MESSAGE_ERR
+        status = {}
+        status["error"] = "Wrong Request Type"
+        return Response(json.dumps(status), status=400, mimetype='application/json')
+
 
 
 @app.route('/health', methods=['GET', 'POST'])

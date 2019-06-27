@@ -31,7 +31,7 @@ USER_CONTEXT=""
 user_map = {}
 
 db_config={}
-db_config["DB_HOST"] = "localhost"
+db_config["DB_HOST"] = os.environ['APP_DB_HOST']
 db_config["DB_PORT"] = 27017
 db_config["DB_USER"] = os.environ['APP_DB_USER']
 db_config["DB_PASSWORD"] = os.environ['APP_DB_PASSWORD']
