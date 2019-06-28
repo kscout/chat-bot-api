@@ -57,9 +57,7 @@ Response:
 ### New App Upload
 `POST /newapp`
 
-
-
-
+Stores meta data of new app to send it to watson for training
 
 Request:
 
@@ -67,9 +65,20 @@ Request:
 
 Response:
 
-- `success Message` (String)
+- `success Message` (JsonString)
 
+### Get Session id
+`GET /session`
 
+Unique session id for users.
+
+Request:
+
+- None
+
+Response:
+
+- `session_id` (Json)
 
 ## Meta Endpoints
 ### Health Check

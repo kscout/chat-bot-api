@@ -5,6 +5,7 @@ from config import config
 import nltk
 import json
 from pymongo import MongoClient
+import uuid
 
 # Setting up NLTK
 nltk.data.path.append("/srv/bot_api/nltk_data/")
@@ -53,6 +54,23 @@ def receive_messages():
         status["error"] = "Wrong Request Type"
         return Response(json.dumps(status), status=400, mimetype='application/json')
 
+
+@app.route('/session', methods=['GET'])
+def create_sessions():
+    if request.method == 'GET':
+        try:
+            unique_id = {}
+            unique_id['session_id']  = str(uuid.uuid1())
+            print(unique_id)
+            return Response(json.dumps(unique_id), status=200, mimetype='application/json')
+        except:
+            status ={}
+            status["error"] = "Could not generate unique id: " + str(e)
+            return Response(json.dumps(status), status=400, mimetype='application/json')
+    else:
+        status = {}
+        status["error"] = "Wrong Request Type"
+        return Response(json.dumps(status), status=400, mimetype='application/json')
 
 @app.route('/health', methods=['GET', 'POST'])
 @disable_logging
