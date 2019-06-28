@@ -12,7 +12,7 @@ nltk.data.path.append("/srv/bot_api/nltk_data/")
 
 # Connecting to MondoDB
 client = MongoClient(config.db_config["DB_HOST"], config.db_config["DB_PORT"], username=config.db_config["DB_USER"],
-                    password=config.db_config["DB_PASSWORD"],)  # Connection to MongoDB
+                    password=config.db_config["DB_PASSWORD"], connect=False)  # Connection to MongoDB
 database = config.db_config["DB_NAME"]
 currentConversation = config.db_config["CURRENT"]
 db = client[database][currentConversation]   # Switching to Database with name 'project'
@@ -33,7 +33,8 @@ def receive_messages():
             message_text = request.get_json()['text']
             user = request.get_json()['user']
             config.logger.info(message_text)
-            return processmessage.process_message(message_text, user, db)
+            api_response =  processmessage.process_message(message_text, user, db)
+            return Response(json.dumps(api_response), status=200, mimetype='application/json')
         except IndexError:
             status = {}
             status["error"] = "Index Error"

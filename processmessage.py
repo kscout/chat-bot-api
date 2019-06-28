@@ -40,11 +40,7 @@ def process_message(message: str, user, db):
     }
 
     try:
-        print ("querying database")
-        print ("entire-database")
-        print ("here "+str(db.find_one({})))
         entry = db.find_one({'user_id': user})
-        print (str(entry))
     except Exception as e:
         status = {}
         status["error in querying database"] = str(e)
@@ -92,7 +88,7 @@ def process_message(message: str, user, db):
         text = identify_generic_output(response)
         if actions and text:
             merged_response = {**json.loads(actions), **json.loads(text)}
-            return json.dumps(merged_response)
+            return merged_response
         return actions or text
     except Exception as e:
         status = {}

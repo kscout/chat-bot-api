@@ -35,6 +35,10 @@ def search_apps(message : str) -> str:
     list_of_keywords = (process_text(message))
     try:
         response = requests.get("https://api.kscout.io/nsearch?query=" + (",".join(list_of_keywords)), verify=False)
+        if response.status_code != 200:
+            status = {}
+            status["error connecting to kscout"] = "kscout api not reachable"
+            raise Exception(status)
         return response.text
 
     except ConnectionRefusedError:
