@@ -10,6 +10,7 @@ from pymongo import MongoClient
 # MongoDB is not fork() safe, thus need to create a new instance for every child process in order to stop deadlock.
 # see MongoDB FAQ for more information
 # Connecting to MondoDB
+
 client = MongoClient(config.db_config["DB_HOST"], config.db_config["DB_PORT"], username=config.db_config["DB_USER"],
                     password=config.db_config["DB_PASSWORD"], connect=False)  # Connection to MongoDB
 database = config.db_config["DB_NAME"]
@@ -95,12 +96,14 @@ def process_message(message: str, user):
         raise Exception(status)
 
     try:
+
         actions = identify_actions(response, message)
         text = identify_generic_output(response)
         if actions and text:
             merged_response = {**json.loads(actions), **json.loads(text)}
             return merged_response
         return actions or text
+
     except Exception as e:
         status = dict()
         status["error in creating response"] = str(e)
