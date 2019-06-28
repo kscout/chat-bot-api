@@ -37,4 +37,3 @@ class Entity:
         response = config.service.delete_entity(workspace_id=os.environ['WORKSPACE_ID'], entity=entity_id)
         return json.dumps(response)
 
-

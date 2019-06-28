@@ -6,9 +6,6 @@ Serverless can also mean applications where server-side logic is still written b
 At the time of writing there are 3 components available that can be used in addressing the tasks listed above
 Build — Source-to-container build orchestration
 Eventing — Management and delivery of events
-Serving — Request-driven compute that can scale to zero. Functions-as-a-Service (FaaS) is an event-driven computing execution model that runs in stateless containers and those functions manage server-side logic and state through the use of services. 
+Serving — Request-driven compute that can scale to zero. Functions-as-a-Service (FaaS) is an event-driven computing execution model that runs in stateless containers and those functions manage server-side logic and state through the use of services.
 
-Serverless is the architectural pattern that describe applications that combine FaaS and those hosted (managed) services.
-
-By providing the same building blocks across multiple vendors, Knative addresses the issue of portability and interoperability across different serverless platforms, which can be tremendously valuable because it allows parties building FaaS platforms to focus on providing business value as opposed to building the fundamentals themselves, while leveraging the talent and resources of a wider community.
 
