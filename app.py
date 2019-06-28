@@ -9,8 +9,6 @@ from pymongo import MongoClient
 # Setting up NLTK
 nltk.data.path.append("/srv/bot_api/nltk_data/")
 
-app = Flask(__name__)
-
 
 # Connecting to MondoDB
 client = MongoClient(config.db_config["DB_HOST"], config.db_config["DB_PORT"], username=config.db_config["DB_USER"],
@@ -19,6 +17,13 @@ database = config.db_config["DB_NAME"]
 currentConversation = config.db_config["CURRENT"]
 db = client[database][currentConversation]   # Switching to Database with name 'project'
 config.logger.info("Connection to Database: "+str(db))
+if db.insert_one({'user_id': "xxx_xxx_xxx_xxx_test"}).inserted_id:
+    config.logger.info("Connection to Database Successful")
+else:
+    config.logger.info("Error Connecting to Database")
+
+
+app = Flask(__name__)
 
 # Function to receive messages from client application
 @app.route('/messages', methods=['GET', 'POST'])

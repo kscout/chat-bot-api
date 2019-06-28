@@ -38,6 +38,10 @@ def search_apps(message : str) -> str:
         return response.text
 
     except ConnectionRefusedError:
-        return errors.CONNECTION_ERR
-    except:
-        return errors.NO_SUCH_APP_ERR
+        status = {}
+        status["error connecting to kscout"] = "Connection Refused"
+        raise Exception(status)
+    except Exception as e:
+        status = {}
+        status["error connecting to kscout"] = str(e)
+        raise Exception(status)
