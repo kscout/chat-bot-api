@@ -45,6 +45,8 @@ spec:
                 configMapKeyRef:
                   name: prod-bot-api-db-config
                   key: mongoDbName
+            - name: APP_DB_HOST
+              value: $(PROD_BOT_API_MONGO_SERVICE_HOST)
             - name: API_KEY
               valueFrom:
                 secretKeyRef:

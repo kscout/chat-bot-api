@@ -2,8 +2,8 @@
 
 
 DB_DATA_DIR ?= container-data/db
-DB_CONTAINER_NAME ?= kscout-bot-api-db
-DB_USER ?= kscout-dev
+DB_CONTAINER_NAME ?= prod-kscout-bot-api-db
+DB_USER ?= prod-kscout-bot-api
 DB_PASSWORD ?= secretpassword
 
 DOCKER_TAG_VERSION ?= staging-latest
@@ -25,6 +25,9 @@ docker-cloud: docker-build docker-push
 docker-build:
 	docker build -t ${DOCKER_TAG} .
 
+# build docker with cache
+docker-cache:
+	docker build --cache-from ${DOCKER_TAG} -t ${DOCKER_TAG} .
 
 # Push the docker image for bot-api to docker hub
 docker-push:
