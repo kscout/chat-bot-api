@@ -36,7 +36,7 @@ def receive_messages():
         try:
             message_text = request.get_json()['text']
             user = request.get_json()['user']
-            config.logger.info(message_text)
+            config.logger.info("POST request on /messages")
             api_response =  processmessage.process_message(message_text, user)
             return Response(json.dumps(api_response), status=200, mimetype='application/json')
         except IndexError:
