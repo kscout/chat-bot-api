@@ -17,7 +17,7 @@ database = config.db_config["DB_NAME"]
 currentConversation = config.db_config["CURRENT"]
 db = client[database][currentConversation]   # Switching to Database with name 'project'
 config.logger.info("Connection to Database: "+str(db))
-if db.insert_one({'user_id': "xxx_xxx_xxx_xxx_test"}).inserted_id:
+if db.replace_one({'user_id': "xxx_xxx_xxx_xxx_test"}, {'user_id': "xxx_xxx_xxx_xxx_test"}, upsert=True):
     config.logger.info("Connection to Database Successful")
 else:
     config.logger.info("Error Connecting to Database")
