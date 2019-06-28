@@ -8,7 +8,7 @@ service = ibm_watson.AssistantV1(
 )
 
 
-logger = logging.getLogger('chat_api_logger')
+logger = logging.getLogger('Logger')
 logger.setLevel(logging.DEBUG)
 
 # create console handler and set level to debug

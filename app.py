@@ -1,7 +1,7 @@
 from flask import Flask, Response
-from flask import request
+from config.loggingfilter import *
 import processmessage
-from config import errors, config
+from config import config
 import nltk
 import json
 from pymongo import MongoClient
@@ -18,8 +18,8 @@ client = MongoClient(config.db_config["DB_HOST"], config.db_config["DB_PORT"], u
 database = config.db_config["DB_NAME"]
 currentConversation = config.db_config["CURRENT"]
 db = client[database][currentConversation]   # Switching to Database with name 'project'
+config.logger.info("Connection to Database: "+str(db))
 
-print(db)
 # Function to receive messages from client application
 @app.route('/messages', methods=['GET', 'POST'])
 def receive_messages():
@@ -30,9 +30,13 @@ def receive_messages():
             config.logger.info(message_text)
             return processmessage.process_message(message_text, user, db)
         except IndexError:
-            return errors.INVALID_FORMAT_ERR
-        except Exception:
-            return errors.INVALID_FORMAT_ERR
+            status = {}
+            status["error"] = "Index Error"
+            return Response(json.dumps(status), status=400, mimetype='application/json')
+        except Exception as e:
+            status = {}
+            status["error"] = str(e)
+            return Response(json.dumps(status), status=400, mimetype='application/json')
 
     else:
         status = {}
@@ -42,6 +46,7 @@ def receive_messages():
 
 
 @app.route('/health', methods=['GET', 'POST'])
+@disable_logging
 def health_probe() -> Response:
     status = {}
     status["ok"] = True
@@ -49,7 +54,6 @@ def health_probe() -> Response:
 
 
 if __name__ == '__main__':
-
     app.run(debug=True, host='0.0.0.0', port=8080)
     nltk.data.path.append('/srv/bot_api/nltk_data/')
 

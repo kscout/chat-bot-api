@@ -20,8 +20,8 @@ RUN [ "python", "-c", "import nltk; nltk.download('punkt', download_dir='/srv/bo
 
 FROM base
 
-COPY --from=builder /usr/local /usr/local
-COPY --from=builder /etc/nginx /etc/nginx
+COPY --from=builder /usr /usr
+COPY --from=builder /etc /etc
 COPY --from=builder /var/lib/nginx /var/lib/nginx
 COPY --from=builder /var/log/nginx /var/log/nginx
 COPY --from=builder /srv/bot_api/nltk_data/ /srv/bot_api/nltk_data/

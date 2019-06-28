@@ -29,28 +29,45 @@ def process_message(message: str, user, db):
         'text': message
     }
 
-    entry = db.find_one({'user_id': user})
-    if not entry:
-        response = config.service.message(
-            workspace_id=os.environ['WORKSPACE_ID'],
-            input=message_input).get_result()
+    try:
+        print ("querying database")
+        entry = db.find_one({'user_id': user})
+        print ("")
+        if not entry:
+            response = config.service.message(
+                workspace_id=os.environ['WORKSPACE_ID'],
+                input=message_input).get_result()
 
-    else:
-        context = entry.context
-        response = config.service.message(
-            workspace_id=os.environ['WORKSPACE_ID'],
-            input=message_input, context=context).get_result()
+        else:
+            context = entry["context"]
+            response = config.service.message(
+                workspace_id=os.environ['WORKSPACE_ID'],
+                input=message_input, context=context).get_result()
+    except Exception as e :
+        status = {}
+        status["error in querying database"] = str(e)
+        raise Exception(status)
 
-    # creating class for json file here
-    convo = CurrentConversation(user)
-    convo.context = response['context']
+    try:
+        # creating class for json file here
+        convo = CurrentConversation(user)
+        convo.context = response['context']
 
-    # inserting json into database
-    convojson = jsonpickle.encode(convo)
-    print("convojson ", str(convojson))
+        # inserting json into database
+        convojson = jsonpickle.encode(convo)
 
-    insertid= db.insert_one(json.loads(convojson)).inserted_id
-    print("insertid",insertid)
+    except Exception as e:
+        status = {}
+        status["error in creating json for database"] = str(e)
+        raise Exception(status)
+
+
+    try:
+        db.replace_one({'user_id': user}, json.loads(convojson), upsert=True)
+    except Exception as e:
+        status = {}
+        status["error while inserting in database"] = str(e)
+        raise Exception(status)
 
     actions = identify_actions(response, message)
     text = identify_generic_output(response)
