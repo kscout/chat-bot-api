@@ -25,7 +25,7 @@ def identify_actions(response: json, message: str) -> str:
             if 'learn' == response['output']['actions'][0]['name']:
                 return learn.answer_query(message)
     except Exception as e:
-        status = {}
+        status = dict()
         status["Exception in identifying actions"] = str(e)
         raise Exception(status)
 
@@ -38,7 +38,7 @@ def identify_generic_output(response: json) -> str:
             if response['output']['generic'][0]['options']:
                 return json.dumps(response['output']['generic'][0])
     except Exception as e:
-        status = {}
+        status = dict()
         status["Exception in identifying Generic Output"] = str(e)
         raise Exception(status)
 
@@ -53,7 +53,7 @@ def process_message(message: str, user):
     try:
         entry = db.find_one({'user_id': user})
     except Exception as e:
-        status = {}
+        status = dict()
         status["error in querying database"] = str(e)
         raise Exception(status)
 
@@ -69,7 +69,7 @@ def process_message(message: str, user):
                 workspace_id=os.environ['WORKSPACE_ID'],
                 input=message_input, context=context).get_result()
     except Exception as e:
-        status = {}
+        status = dict()
         status["error in watson"] = str(e)
         raise Exception(status)
 
@@ -82,7 +82,7 @@ def process_message(message: str, user):
         convojson = jsonpickle.encode(convo)
 
     except Exception as e:
-        status = {}
+        status = dict()
         status["error in creating json for database"] = str(e)
         raise Exception(status)
 
@@ -90,7 +90,7 @@ def process_message(message: str, user):
     try:
         db.replace_one({'user_id': user}, json.loads(convojson), upsert=True)
     except Exception as e:
-        status = {}
+        status = dict()
         status["error while inserting/updating database"] = str(e)
         raise Exception(status)
 
@@ -102,6 +102,6 @@ def process_message(message: str, user):
             return merged_response
         return actions or text
     except Exception as e:
-        status = {}
+        status = dict()
         status["error in creating response"] = str(e)
         raise Exception(status)

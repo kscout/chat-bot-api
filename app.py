@@ -57,7 +57,7 @@ def receive_messages():
 @app.route('/health', methods=['GET', 'POST'])
 @disable_logging
 def health_probe() -> Response:
-    status = {}
+    status = dict()
     status["ok"] = True
     return Response(json.dumps(status), status=200, mimetype='application/json')
 
