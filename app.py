@@ -15,7 +15,7 @@ client = MongoClient(config.db_config["DB_HOST"], config.db_config["DB_PORT"], u
                     password=config.db_config["DB_PASSWORD"], connect=False)  # Connection to MongoDB
 database = config.db_config["DB_NAME"]
 currentConversation = config.db_config["CURRENT"]
-db = client[database][currentConversation]   # Switching to Database with name 'project'
+db = client[database][currentConversation]
 config.logger.info("Connection to Database: "+str(db))
 if db.insert_one({'user_id': "xxx_xxx_xxx_xxx_test"}).inserted_id:
     try:
@@ -37,7 +37,7 @@ def receive_messages():
             message_text = request.get_json()['text']
             user = request.get_json()['user']
             config.logger.info(message_text)
-            api_response =  processmessage.process_message(message_text, user, db)
+            api_response =  processmessage.process_message(message_text, user)
             return Response(json.dumps(api_response), status=200, mimetype='application/json')
         except IndexError:
             status = {}
@@ -52,7 +52,6 @@ def receive_messages():
         status = {}
         status["error"] = "Wrong Request Type"
         return Response(json.dumps(status), status=400, mimetype='application/json')
-
 
 
 @app.route('/health', methods=['GET', 'POST'])

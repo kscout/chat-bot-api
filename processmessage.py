@@ -4,6 +4,17 @@ from config.skeleton import CurrentConversation
 import os
 import json
 import jsonpickle
+from pymongo import MongoClient
+
+
+# MongoDB is not fork() safe, thus need to create a new instance for every child process in order to stop deadlock.
+# see MongoDB FAQ for more information
+# Connecting to MondoDB
+client = MongoClient(config.db_config["DB_HOST"], config.db_config["DB_PORT"], username=config.db_config["DB_USER"],
+                    password=config.db_config["DB_PASSWORD"], connect=False)  # Connection to MongoDB
+database = config.db_config["DB_NAME"]
+currentConversation = config.db_config["CURRENT"]
+db = client[database][currentConversation]
 
 
 def identify_actions(response: json, message: str) -> str:
@@ -32,7 +43,7 @@ def identify_generic_output(response: json) -> str:
         raise Exception(status)
 
 
-def process_message(message: str, user, db):
+def process_message(message: str, user):
     # User input
     message_input = {
         'message_type:': 'text',
