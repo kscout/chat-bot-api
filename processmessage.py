@@ -32,7 +32,12 @@ def process_message(message: str, user, db):
     try:
         print ("querying database")
         entry = db.find_one({'user_id': user})
-        print ("")
+    except Exception as e:
+        status = {}
+        status["error in querying database"] = str(e)
+        raise Exception(status)
+
+    try:
         if not entry:
             response = config.service.message(
                 workspace_id=os.environ['WORKSPACE_ID'],
@@ -43,9 +48,9 @@ def process_message(message: str, user, db):
             response = config.service.message(
                 workspace_id=os.environ['WORKSPACE_ID'],
                 input=message_input, context=context).get_result()
-    except Exception as e :
+    except Exception as e:
         status = {}
-        status["error in querying database"] = str(e)
+        status["error in watson"] = str(e)
         raise Exception(status)
 
     try:
@@ -66,7 +71,7 @@ def process_message(message: str, user, db):
         db.replace_one({'user_id': user}, json.loads(convojson), upsert=True)
     except Exception as e:
         status = {}
-        status["error while inserting in database"] = str(e)
+        status["error while inserting/updating database"] = str(e)
         raise Exception(status)
 
     actions = identify_actions(response, message)
