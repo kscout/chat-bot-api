@@ -28,7 +28,10 @@ and [Run](#run) sections.
 ## Database
 Start a local MongoDB server by running:
 
+```
+make db
 
+```
 
 ## Configuration
 For local development, create a `Wastson Assitant` instance in a IBM Cloud Catalog. The instance will be created in a `default` resource group.
@@ -38,6 +41,10 @@ Launch the Watson Assistant using dashboard and import training data available i
 Configuration is passed via environment variables.
 - `BOTUSER_KEY` : API key assigned to the bot
 - `WORKSPACE_ID` :Unique id given to the created skill
+- `APP_DB_HOST` : Database host
+- `APP_DB_NAME` : Database name
+- `APP_DB_USER` : User for this database
+- `APP_DB_PASSWORD` : Database user password
 
 You can create and inject your own training data / skill by using functions in https://github.com/knative-scout/chat-bot-api/tree/master/training/features
 
