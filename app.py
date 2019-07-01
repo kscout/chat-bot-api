@@ -4,6 +4,7 @@ import processmessage
 from config import config
 import nltk
 import json
+from config.logger import *
 from pymongo import MongoClient
 import uuid
 
@@ -16,15 +17,15 @@ client = MongoClient(config.db_config["DB_HOST"], config.db_config["DB_PORT"], u
 database = config.db_config["DB_NAME"]
 currentConversation = config.db_config["CURRENT"]
 db = client[database][currentConversation]
-config.logger.info("Connection to Database: " + str(db))
+logger.info("Connection to Database: " + str(db))
 if db.insert_one({'user_id': "xxx_xxx_xxx_xxx_test"}).inserted_id:
     try:
         db.delete_many({'user_id': "xxx_xxx_xxx_xxx_test"})
     except Exception as e:
-        config.logger.info("Error Connecting to Database: " + str(e))
-    config.logger.info("Connection to Database Successful")
+        logger.info("Error Connecting to Database: " + str(e))
+        logger.info("Connection to Database Successful")
 else:
-    config.logger.info("Error Connecting to Database")
+    logger.info("Error Connecting to Database")
 
 app = Flask(__name__)
 
@@ -36,7 +37,7 @@ def receive_messages():
         try:
             message_text = request.get_json()['text']
             user = request.get_json()['user']
-            config.logger.info("POST request on /messages")
+            logger.info("POST request on /messages")
             api_response = processmessage.process_message(message_text, user)
             return Response(json.dumps(api_response), status=200, mimetype='application/json')
         except IndexError:
@@ -58,20 +59,34 @@ def receive_messages():
 def create_sessions():
     if request.method == 'GET':
         try:
-            unique_id = {}
+            unique_id = {'session_id': str(uuid.uuid1())}
 
             # uuid takes the time stamp and host id to create unique identifier
 
-            unique_id['session_id'] = str(uuid.uuid1())
-            print(unique_id)
+            logger.info(unique_id)
             return Response(json.dumps(unique_id), status=200, mimetype='application/json')
-        except:
-            status = {}
-            status["error"] = "Could not generate unique id: " + str(e)
+        except Exception as e:
+            status = {"error": "Could not generate unique id: " + str(e)}
             return Response(json.dumps(status), status=400, mimetype='application/json')
     else:
-        status = {}
-        status["error"] = "Wrong Request Type"
+        status = {"error": "Wrong Request Type"}
+        return Response(json.dumps(status), status=400, mimetype='application/json')
+
+
+@app.route('/newapp', methods=['POST'])
+def handle_new_app():
+    if request.method == 'POST':
+        try:
+            app = request.get_json()['apps'][0]
+            logger.info("POST request on /messages")
+            api_response = processmessage.store_app_data(app)
+            return Response(json.dumps(api_response), status=200, mimetype='application/json')
+
+        except Exception as e:
+            status = {"error": "Bad Request  " + str(e)}
+            return Response(json.dumps(status), status=400, mimetype='application/json')
+    else:
+        status = {"error": "Wrong Request Type"}
         return Response(json.dumps(status), status=400, mimetype='application/json')
 
 

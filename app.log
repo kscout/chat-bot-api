@@ -1,0 +1,142 @@
+07/01/2019 01:55:52 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 01:56:19 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 01:56:19 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 01:59:01 PM EDT-app.py[line:83]-chatbot-api-logger-INFO: POST request on /messages
+07/01/2019 02:00:23 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 02:00:24 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 02:00:28 PM EDT-app.py[line:83]-chatbot-api-logger-INFO: POST request on /messages
+07/01/2019 02:17:03 PM EDT-app.py[line:83]-chatbot-api-logger-INFO: POST request on /messages
+07/01/2019 02:18:10 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 02:18:11 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 02:18:57 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 02:19:39 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 02:19:40 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 02:19:44 PM EDT-app.py[line:84]-chatbot-api-logger-INFO: POST request on /messages
+07/01/2019 02:20:22 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 02:20:23 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 02:20:26 PM EDT-app.py[line:84]-chatbot-api-logger-INFO: POST request on /messages
+07/01/2019 02:21:14 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 02:21:26 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 02:23:01 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 02:23:02 PM EDT-app.py[line:83]-chatbot-api-logger-INFO: POST request on /messages
+07/01/2019 02:24:11 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 02:24:11 PM EDT-app.py[line:83]-chatbot-api-logger-INFO: POST request on /messages
+07/01/2019 02:24:54 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 02:24:55 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 02:24:56 PM EDT-app.py[line:84]-chatbot-api-logger-INFO: POST request on /messages
+07/01/2019 02:26:24 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 02:26:26 PM EDT-app.py[line:84]-chatbot-api-logger-INFO: POST request on /messages
+07/01/2019 02:27:03 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 02:27:03 PM EDT-app.py[line:84]-chatbot-api-logger-INFO: POST request on /messages
+07/01/2019 02:27:27 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 02:27:28 PM EDT-app.py[line:84]-chatbot-api-logger-INFO: POST request on /messages
+07/01/2019 02:27:41 PM EDT-app.py[line:84]-chatbot-api-logger-INFO: POST request on /messages
+07/01/2019 02:28:39 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 02:28:41 PM EDT-app.py[line:85]-chatbot-api-logger-INFO: POST request on /messages
+07/01/2019 02:29:24 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 02:29:24 PM EDT-app.py[line:85]-chatbot-api-logger-INFO: POST request on /messages
+07/01/2019 02:30:00 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 02:30:03 PM EDT-app.py[line:85]-chatbot-api-logger-INFO: POST request on /messages
+07/01/2019 02:30:15 PM EDT-app.py[line:85]-chatbot-api-logger-INFO: POST request on /messages
+07/01/2019 02:30:46 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 02:30:50 PM EDT-app.py[line:85]-chatbot-api-logger-INFO: POST request on /messages
+07/01/2019 02:32:34 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 02:32:39 PM EDT-app.py[line:85]-chatbot-api-logger-INFO: POST request on /messages
+07/01/2019 02:33:02 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 02:33:51 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 02:33:51 PM EDT-app.py[line:85]-chatbot-api-logger-INFO: POST request on /messages
+07/01/2019 02:34:37 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 02:35:16 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 02:35:17 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 02:35:22 PM EDT-app.py[line:85]-chatbot-api-logger-INFO: POST request on /messages
+07/01/2019 02:36:24 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 02:36:29 PM EDT-app.py[line:85]-chatbot-api-logger-INFO: POST request on /messages
+07/01/2019 02:37:02 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 02:37:03 PM EDT-app.py[line:85]-chatbot-api-logger-INFO: POST request on /messages
+07/01/2019 02:37:39 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 02:38:09 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 02:38:10 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 02:38:12 PM EDT-app.py[line:85]-chatbot-api-logger-INFO: POST request on /messages
+07/01/2019 02:40:56 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 02:40:57 PM EDT-app.py[line:85]-chatbot-api-logger-INFO: POST request on /messages
+07/01/2019 02:41:33 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 02:41:33 PM EDT-app.py[line:85]-chatbot-api-logger-INFO: POST request on /messages
+07/01/2019 02:41:57 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 02:41:57 PM EDT-app.py[line:85]-chatbot-api-logger-INFO: POST request on /messages
+07/01/2019 02:42:26 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 02:42:28 PM EDT-app.py[line:85]-chatbot-api-logger-INFO: POST request on /messages
+07/01/2019 02:43:43 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 02:43:44 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 02:43:46 PM EDT-app.py[line:85]-chatbot-api-logger-INFO: POST request on /messages
+07/01/2019 02:44:19 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 02:44:19 PM EDT-app.py[line:85]-chatbot-api-logger-INFO: POST request on /messages
+07/01/2019 03:04:19 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 03:04:19 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 03:04:23 PM EDT-app.py[line:85]-chatbot-api-logger-INFO: POST request on /messages
+07/01/2019 03:05:11 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 03:05:12 PM EDT-app.py[line:85]-chatbot-api-logger-INFO: POST request on /messages
+07/01/2019 03:07:23 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 03:07:24 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 03:07:27 PM EDT-app.py[line:85]-chatbot-api-logger-INFO: POST request on /messages
+07/01/2019 03:08:55 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 03:08:55 PM EDT-app.py[line:85]-chatbot-api-logger-INFO: POST request on /messages
+07/01/2019 03:10:16 PM EDT-app.py[line:40]-chatbot-api-logger-INFO: POST request on /messages
+07/01/2019 03:10:35 PM EDT-app.py[line:40]-chatbot-api-logger-INFO: POST request on /messages
+07/01/2019 03:11:00 PM EDT-app.py[line:40]-chatbot-api-logger-INFO: POST request on /messages
+07/01/2019 03:11:13 PM EDT-app.py[line:40]-chatbot-api-logger-INFO: POST request on /messages
+07/01/2019 03:43:56 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 03:43:57 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 03:44:29 PM EDT-app.py[line:85]-chatbot-api-logger-INFO: POST request on /messages
+07/01/2019 03:45:19 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 03:45:19 PM EDT-app.py[line:85]-chatbot-api-logger-INFO: POST request on /messages
+07/01/2019 03:46:34 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 03:46:35 PM EDT-app.py[line:85]-chatbot-api-logger-INFO: POST request on /messages
+07/01/2019 03:47:00 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 03:47:00 PM EDT-app.py[line:85]-chatbot-api-logger-INFO: POST request on /messages
+07/01/2019 03:58:29 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 03:58:30 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 03:58:33 PM EDT-app.py[line:85]-chatbot-api-logger-INFO: POST request on /messages
+07/01/2019 03:59:26 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 03:59:26 PM EDT-app.py[line:85]-chatbot-api-logger-INFO: POST request on /messages
+07/01/2019 04:00:52 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 04:01:18 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 04:01:19 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 04:01:30 PM EDT-app.py[line:85]-chatbot-api-logger-INFO: POST request on /messages
+07/01/2019 04:14:58 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 04:14:59 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 04:15:05 PM EDT-app.py[line:81]-chatbot-api-logger-INFO: POST request on /messages
+07/01/2019 04:16:27 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 04:16:46 PM EDT-app.py[line:81]-chatbot-api-logger-INFO: POST request on /messages
+07/01/2019 04:19:55 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 04:19:55 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 04:19:58 PM EDT-app.py[line:81]-chatbot-api-logger-INFO: POST request on /messages
+07/01/2019 04:22:50 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 04:22:54 PM EDT-app.py[line:81]-chatbot-api-logger-INFO: POST request on /messages
+07/01/2019 04:23:28 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 04:24:15 PM EDT-app.py[line:81]-chatbot-api-logger-INFO: POST request on /messages
+07/01/2019 04:26:01 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 04:26:02 PM EDT-app.py[line:81]-chatbot-api-logger-INFO: POST request on /messages
+07/01/2019 04:29:39 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 04:29:40 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 04:29:45 PM EDT-app.py[line:81]-chatbot-api-logger-INFO: POST request on /messages
+07/01/2019 04:30:46 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 04:30:46 PM EDT-app.py[line:81]-chatbot-api-logger-INFO: POST request on /messages
+07/01/2019 04:33:48 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 04:46:06 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 04:46:07 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 04:48:27 PM EDT-app.py[line:81]-chatbot-api-logger-INFO: POST request on /messages
+07/01/2019 04:50:25 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 04:50:27 PM EDT-app.py[line:81]-chatbot-api-logger-INFO: POST request on /messages
+07/01/2019 04:51:47 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 04:51:47 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 04:51:50 PM EDT-app.py[line:81]-chatbot-api-logger-INFO: POST request on /messages
+07/01/2019 04:55:19 PM EDT-app.py[line:81]-chatbot-api-logger-INFO: POST request on /messages
+07/01/2019 04:56:48 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 04:57:02 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 04:57:03 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 04:57:13 PM EDT-app.py[line:81]-chatbot-api-logger-INFO: POST request on /messages
+07/01/2019 04:57:37 PM EDT-app.py[line:81]-chatbot-api-logger-INFO: POST request on /messages
+07/01/2019 04:57:56 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/01/2019 04:57:57 PM EDT-app.py[line:81]-chatbot-api-logger-INFO: POST request on /messages
+07/01/2019 04:58:36 PM EDT-app.py[line:81]-chatbot-api-logger-INFO: POST request on /messages
+07/01/2019 05:00:50 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
