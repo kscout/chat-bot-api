@@ -1,4 +1,5 @@
 from flask import Flask, Response
+from flask_cors import CORS, cross_origin
 from config.loggingfilter import *
 import processmessage
 from config import config
@@ -28,10 +29,13 @@ else:
     logger.info("Error Connecting to Database")
 
 app = Flask(__name__)
+CORS(app)
+
 
 
 # Function to receive messages from client application
 @app.route('/messages', methods=['GET', 'POST'])
+@cross_origin()
 def receive_messages():
     if request.method == 'POST':
         try:

@@ -1,6 +1,7 @@
 .idea/
 venv/
 __pycache__/
+deployHelm/
 
 # Local MongoDB
 container-data
