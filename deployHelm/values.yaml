@@ -1,0 +1,30 @@
+# Global shared chart configuration
+global:
+  # Deployment environment, usually "prod" or "staging"
+  env:
+
+  # App being deployed
+  app: bot-api
+
+# HTTP service chart
+http:
+  # Serve under host
+  defaultHost: bot.kscout.io
+
+  # Internal app container port
+  port: 8080
+
+  # Configuration
+  configMap:
+    - key: externalURL
+      value: "{{ .Values.defaultHost }}"
+      envKey: APP_EXTERNAL_URL
+    - key: httpAddr
+      value: ":{{ .Values.port }}"
+      envKey: APP_HTTP_ADDR
+
+  # Mount secret under path
+  secretMount: /mnt/secret
+
+  # Pass Mongo credentials to app container
+  mongoEnabled: true
