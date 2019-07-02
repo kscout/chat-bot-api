@@ -9,7 +9,7 @@ spec:
   tags:
     - from:
         kind: DockerImage
-        name: docker.io/kscout/bot-api:latest
+        name: docker.io/kscout/bot-api:prod-latest
       name: latest
       importPolicy:
         scheduled: true
