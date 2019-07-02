@@ -9,4 +9,4 @@ container-data
 
 # Secrets
 .env
-secrets*
+*secrets*
