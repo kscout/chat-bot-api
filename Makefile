@@ -57,12 +57,12 @@ db-cli:
 
 
 #Staging the app
-staging: docker-cloud staging-rollout
+staging-classic: docker-cloud staging-rollout
 
 # Deploy code to Production:
-production:
+production-classic:
 	./deploy/deploy.sh -n ${PROD_NAMESPACE} -p ${PROD_POD} -t prod
 
 #deploy code to staging:
-staging-rollout:
+staging-rollout-classic:
 	./deploy/deploy.sh -n ${NAMESPACE} -p ${POD} -t staging
