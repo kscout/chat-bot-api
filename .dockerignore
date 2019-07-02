@@ -1,6 +1,7 @@
 .idea/
 venv/
 __pycache__/
+app.log
 
 # Local MongoDB
 container-data
