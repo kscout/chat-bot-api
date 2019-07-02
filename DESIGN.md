@@ -48,7 +48,7 @@ If no text is provided , it sends Empty Message error
 Request:
 
 - `user` (String): Unique user id
-- `text` (List[String]): Message sent by the user
+- `text` (String): Message sent by the user
 
 Response:
 

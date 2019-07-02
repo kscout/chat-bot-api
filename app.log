@@ -140,3 +140,7 @@
 07/01/2019 04:57:57 PM EDT-app.py[line:81]-chatbot-api-logger-INFO: POST request on /messages
 07/01/2019 04:58:36 PM EDT-app.py[line:81]-chatbot-api-logger-INFO: POST request on /messages
 07/01/2019 05:00:50 PM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/02/2019 11:10:06 AM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/02/2019 11:10:07 AM EDT-app.py[line:20]-chatbot-api-logger-INFO: Connection to Database: Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False), 'prod-kscout-bot-api-db'), 'currentconversation')
+07/02/2019 11:10:43 AM EDT-app.py[line:40]-chatbot-api-logger-INFO: POST request on /messages
+07/02/2019 11:11:39 AM EDT-app.py[line:40]-chatbot-api-logger-INFO: POST request on /messages
