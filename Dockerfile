@@ -38,7 +38,7 @@ RUN chmod -R 777 /var/log/nginx /var/run /var/lib/nginx \
 RUN rm -v /etc/nginx/nginx.conf
 COPY deploy/nginx.conf /etc/nginx
 
-RUN chmod 777 ./srv/bot_api
+RUN chmod 777 /srv/bot_api
 RUN chmod 777 ./nginxstart.sh
 
 CMD ["nginx", "-g", "daemon off;"]
