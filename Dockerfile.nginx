@@ -28,21 +28,9 @@ COPY --from=builder /srv/bot_api/nltk_data/ /srv/bot_api/nltk_data/
 COPY . /srv/bot_api
 
 WORKDIR /srv/bot_api
-
-RUN rm /etc/nginx/sites-enabled/default
-
-RUN chmod -R 777 /var/log/nginx /var/run /var/lib/nginx \
-     && chgrp -R 0 /etc/nginx \
-     && chmod -R g+rwX /etc/nginx
-
-RUN rm -v /etc/nginx/nginx.conf
-COPY deploy/nginx.conf /etc/nginx
-
 RUN chmod 777 /srv/bot_api
-RUN chmod 777 ./nginxstart.sh
 
-CMD ["nginx", "-g", "daemon off;"]
 
 EXPOSE 8080
 
-CMD ["gunicorn", "-b", "0.0.0.0:8080", "app"]
+CMD ["./nginxstart.sh"]
