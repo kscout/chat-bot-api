@@ -6,8 +6,7 @@ import json
 import jsonpickle
 from pymongo import MongoClient
 from training.features.entity import Entity
-from config.config import service
-
+from controllers import  deploy
 # MongoDB is not fork() safe, thus need to create a new instance for every child process in order to stop deadlock.
 # see MongoDB FAQ for more information
 # Connecting to MondoDB
@@ -23,8 +22,8 @@ def identify_actions(response: json, message: str) -> str:
         if 'actions' in response['output'] and response['output']['actions'][0]['type'] == 'client':
             if 'search' == response['output']['actions'][0]['name']:
                 return search.search_apps(message)
-            if 'learn' == response['output']['actions'][0]['name']:
-                return learn.answer_query(message)
+            if 'deploy' == response['output']['actions'][0]['name']:
+                return deploy.deploy_app(response['context']['app_id'])
     except Exception as e:
         status = {"Exception in identifying actions": str(e)}
         raise Exception(status)
@@ -93,8 +92,8 @@ def process_message(message: str, user):
         actions = identify_actions(response, message)
         text = identify_generic_output(response)
         if actions and text:
-            merged_response = {**json.loads(actions), **json.loads(text)}
-            return merged_response
+            merged_response = {**json.loads(text),**json.loads(actions)}
+            return json.dumps(merged_response)
         return actions or text
     except Exception as e:
         status = {"error in creating response": str(e)}
