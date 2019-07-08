@@ -1,4 +1,4 @@
-from controllers import search, learn
+from controllers import search
 from config import config
 from config.skeleton import CurrentConversation
 import os
