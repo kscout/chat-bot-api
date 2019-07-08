@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Prepare log files and start outputting logs to stdout
 mkdir -p logs
