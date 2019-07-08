@@ -42,9 +42,9 @@ imagestream-tag:
 deploy:
 	@if [ -z "${ENV}" ]; then echo "ENV must be set"; exit 1; fi
 	helm template \
-		--values deployHelm/values.yaml \
-		--values deployHelm/values.secrets.${ENV}.yaml \
-		--set global.env=${ENV} deployHelm \
+		--values deploy/values.yaml \
+		--values deploy/values.secrets.${ENV}.yaml \
+		--set global.env=${ENV} deploy \
 	| ${KUBE_APPLY}
 
 # deploy to production
@@ -75,76 +75,3 @@ docker-build:
 docker-push:
 	@if [ -z "${ENV}" ]; then echo "ENV must be set"; exit 1; fi
 	docker push ${DOCKER_TAG}
-
-
-
-##########################################################################
-#Old Methods in Makefile
-##########################################################################
-
-DB_DATA_DIR ?= container-data/db
-DB_CONTAINER_NAME ?= prod-kscout-bot-api-db
-DB_USER ?= prod-kscout-bot-api
-DB_PASSWORD ?= secretpassword
-
-DOCKER_TAG_VERSION ?= staging-latest
-DOCKER_TAG_C ?= kscout/bot-api:${DOCKER_TAG_VERSION}
-
-
-NAMESPACE ?= kscout
-POD ?= staging-bot-api
-
-PROD_NAMESPACE ?= kscout
-PROD_POD ?= prod-bot-api
-
-
-# Build and Push to docker hub
-docker-cloud-classic: docker-build-classic docker-push-classic
-
-
-# build Docker image
-docker-build-classic:
-	docker build -t ${DOCKER_TAG_C} .
-
-# build docker with cache
-docker-cache-classic:
-	docker build --cache-from ${DOCKER_TAG_C} -t ${DOCKER_TAG_C} .
-
-# Push the docker image for bot-api to docker hub
-docker-push-classic:
-	docker push ${DOCKER_TAG_C}
-
-
-# Runs the bot-api docker image on local machine
-docker-run-classic:
-	docker run -it --rm -e API_KEY=${API_KEY} -e WORKSPACE_ID=${WORKSPACE_ID} --net host ${DOCKER_TAG_C}
-
-
-# Start MongoDB server in container
-# Pulls docker image for latest mongo build and runs the container
-db:
-	mkdir -p ${DB_DATA_DIR}
-	docker run \
-		-it --rm --net host --name ${DB_CONTAINER_NAME} \
-		-v ${PWD}/${DB_DATA_DIR}:/data/db \
-		-e MONGO_INITDB_ROOT_USERNAME=${DB_USER} \
-		-e MONGO_INITDB_ROOT_PASSWORD=${DB_PASSWORD} \
-		mongo:latest
-
-# Runs mongo on shell
-db-cli:
-	docker run -it --rm --net host mongo:latest mongo -u ${DB_USER} -p ${DB_PASSWORD}
-
-
-
-#Staging the app
-staging-classic: docker-cloud-classic staging-rollout-classic
-
-# Deploy code to Production:
-production-classic:
-	./deploy/deploy.sh -n ${PROD_NAMESPACE} -p ${PROD_POD} -t prod
-
-#deploy code to staging:
-staging-rollout-classic:
-	./deploy/deploy.sh -n ${NAMESPACE} -p ${POD} -t staging
-

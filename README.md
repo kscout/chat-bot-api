@@ -61,6 +61,33 @@ python app.py
 ```
 
 # Deployment
+## Deployment Configuration
+Create a copy of `deploy/values.secrets.example.yaml` named 
+`deploy/values.secrets.ENV.yaml` for whichever deployment environment you wish
+to configure.
+
+Edit this file with your own values.
+
+Never commit this file.
+
+## Deploy
+Initialize submodules:
+
+```
+git submodule update --init --recursive
+```
+
+Deploy production by running:
+
+```
+make deploy-prod
+```
+
+If this is the first time production has been deployed run:
+
+```
+make rollout-prod
+```
 
 # Examples
 
