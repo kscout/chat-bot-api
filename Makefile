@@ -42,9 +42,9 @@ imagestream-tag:
 deploy:
 	@if [ -z "${ENV}" ]; then echo "ENV must be set"; exit 1; fi
 	helm template \
-		--values deployHelm/values.yaml \
-		--values deployHelm/values.secrets.${ENV}.yaml \
-		--set global.env=${ENV} deployHelm \
+		--values deploy/values.yaml \
+		--values deploy/values.secrets.${ENV}.yaml \
+		--set global.env=${ENV} deploy \
 	| ${KUBE_APPLY}
 
 # deploy to production
