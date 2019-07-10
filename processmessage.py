@@ -155,6 +155,6 @@ def store_app_data(apps):
 
 def verify_request(verification_token):
 
-    if verification_token != os.environ['APP_BOT_API_SECRET']:
+    if verification_token != os.environ['REGISTRY_API_SECRET']:
         status = {"Unauthorized Request"}
         raise Exception(status)
