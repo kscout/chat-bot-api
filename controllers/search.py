@@ -4,8 +4,9 @@ import nltk
 from nltk.corpus import stopwords
 from nltk.stem.wordnet import WordNetLemmatizer as wnl
 import requests
+from training.data import similar_words
 
-CUSTOMIZED_STOP_WORDS: List[str] = ["search", "want", "like", "apps","deploy"]
+CUSTOMIZED_STOP_WORDS: List[str] = ["search", "want", "like", "apps", "deploy", "app"]
 
 
 # Process text to send to app-api
@@ -26,11 +27,16 @@ def process_text(message: str):
     # Create tokens
     text = list(set(nltk.word_tokenize(text)))
     text = [wnl().lemmatize(word) for word in text if not word in stop_words]
+
+    for i in range(len(text)):
+        if text[i] in similar_words.similar_words_dict:
+            text[i] = similar_words.similar_words_dict[text[i]]
+
     return text
 
 
 # Search apps using app-api endpoint
-def search_apps(message : str) -> str:
+def search_apps(message: str) -> str:
     list_of_keywords = (process_text(message))
     try:
         response = requests.get("https://api.kscout.io/nsearch?query=" + (",".join(list_of_keywords)), verify=False)

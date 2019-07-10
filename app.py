@@ -74,7 +74,7 @@ def create_sessions():
 def handle_new_app():
     if request.method == 'POST':
         try:
-            verify_request(request.headers.get('App_Bot_Api_Secret'))
+            verify_request(request.headers.get('X-Bot-API-Secret'))
             apps = request.get_json()['apps']
             logger.info("POST request on /messages")
             api_response = store_app_data(apps)
