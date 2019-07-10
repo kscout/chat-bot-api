@@ -105,12 +105,16 @@ def extract_data(apps):
     app_ids_list = []
     categories_list = []
     tags_list = []
+    taglines = []
 
     for i in range(len(apps)):
+
         app_ids_list.append(apps[i]['app_id'])
         categories_list += apps[i]['categories']
-        tags_list+= apps[i]['tags']
-    return app_ids_list, list(set(categories_list)), list(set(tags_list))
+        tags_list += apps[i]['tags']
+        taglines.append(apps[i]['tagline'])
+
+    return app_ids_list, list(set(categories_list)), list(set(tags_list)), taglines
 
 
 def recreate_single_entity(value_list, entity_name):
@@ -136,7 +140,7 @@ def recreate_single_entity(value_list, entity_name):
 # function to update tags, categories and ids
 def store_app_data(apps):
     try:
-        app_ids_list, categories_list, tags_list = extract_data(apps)
+        app_ids_list, categories_list, tags_list, taglines = extract_data(apps)
 
         # recreate app_ids
         recreate_single_entity(app_ids_list, 'app_ids')
@@ -146,15 +150,19 @@ def store_app_data(apps):
 
         # recreate tags
         recreate_single_entity(tags_list, 'tags')
+
+        # recreate taglines
+        recreate_single_entity(taglines, 'tagline')
+
         return {"message": "Data updated successfully"}
 
     except Exception as e:
-        status = {"Missing tags, app_id or categories": str(e)}
+        status = {"Missing tags, app_id , taglines or categories": str(e)}
         raise Exception(status)
 
 
 def verify_request(verification_token):
 
-    if verification_token != os.environ['REGISTRY_API_SECRET']:
+    if verification_token != os.environ['X_BOT_API_SECRET']:
         status = {"Unauthorized Request"}
         raise Exception(status)
