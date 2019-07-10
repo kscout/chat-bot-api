@@ -6,7 +6,8 @@ import json
 import jsonpickle
 from pymongo import MongoClient
 from training.features.entity import Entity
-from controllers import  deploy
+from controllers import deploy
+
 # MongoDB is not fork() safe, thus need to create a new instance for every child process in order to stop deadlock.
 # see MongoDB FAQ for more information
 # Connecting to MondoDB
@@ -92,7 +93,7 @@ def process_message(message: str, user):
         actions = identify_actions(response, message)
         text = identify_generic_output(response)
         if actions and text:
-            merged_response = {**json.loads(text),**json.loads(actions)}
+            merged_response = {**json.loads(text), **json.loads(actions)}
             return json.dumps(merged_response)
         return actions or text
     except Exception as e:
@@ -100,55 +101,60 @@ def process_message(message: str, user):
         raise Exception(status)
 
 
-# update meta data of the new app by creating new values in the entities
+def extract_data(apps):
+    app_ids_list = []
+    categories_list = []
+    tags_list = []
 
-def update_entity_multiple_values(entity_name, new_values):
-    updated_entity = Entity()
-    get_entity = updated_entity.get_entity(entity_name)
-    get_value = get_entity.result["values"]
+    for i in range(len(apps)):
+        app_ids_list.append(apps[i]['app_id'])
+        categories_list += apps[i]['categories']
+        tags_list+= apps[i]['tags']
+    return app_ids_list, list(set(categories_list)), list(set(tags_list))
 
-    # create separate value of tags/categories entity for each new tag/ category
 
-    for value in new_values:
-        flag = 0
-        for i in range(len(get_value)):
-
-            if get_entity.result["values"][i]["value"] == value:
-                flag = 0
-                break
-            else:
-                flag = 1
-                continue
-        if flag or not get_value:
-            new_value = {
-                "type": "synonyms",
-                "value": value,
-                "synonyms": []
-            }
-            get_value.append(new_value)
+def recreate_single_entity(value_list, entity_name):
+    new_entity = Entity()
 
     try:
-        return updated_entity.update_entity_values(entity_name, get_value)
+        if new_entity.get_entity(entity_name):
+            new_entity.delete_entity(entity_name)
+
+        entity_values = []
+        for i in value_list:
+            entity_values.append({'value': i})
+
+        response = new_entity.create_entity(entity_name, entity_values)
+
+        return response
 
     except Exception as e:
-        status = {"Tags not updated": str(e)}
+        status = {"Entity not recreated": str(e)}
         raise Exception(status)
 
 
 # function to update tags, categories and ids
-def store_app_data(app):
+def store_app_data(apps):
     try:
-        # Update app_ids
-        update_entity_multiple_values("app_ids", [app["app_id"]])
+        app_ids_list, categories_list, tags_list = extract_data(apps)
 
-        # Update tags
-        update_entity_multiple_values("tags", app["tags"])
+        # recreate app_ids
+        recreate_single_entity(app_ids_list, 'app_ids')
 
-        # Update categories
-        update_entity_multiple_values("categories", app["categories"])
+        # recreate categories
+        recreate_single_entity(categories_list, 'categories')
 
+        # recreate tags
+        recreate_single_entity(tags_list, 'tags')
         return {"message": "Data updated successfully"}
 
     except Exception as e:
         status = {"Missing tags, app_id or categories": str(e)}
+        raise Exception(status)
+
+
+def verify_request(verification_token):
+
+    if verification_token != os.environ['REGISTRY_API_SECRET']:
+        status = {"Unauthorized Request"}
         raise Exception(status)

@@ -1,10 +1,8 @@
 from flask import Flask, Response
 from flask_cors import CORS, cross_origin
 from config.loggingfilter import *
-import processmessage
-from config import config
 import nltk
-import json
+from processmessage import *
 from config.logger import *
 from pymongo import MongoClient
 import uuid
@@ -32,7 +30,6 @@ app = Flask(__name__)
 CORS(app)
 
 
-
 # Function to receive messages from client application
 @app.route('/messages', methods=['GET', 'POST'])
 @cross_origin()
@@ -42,20 +39,17 @@ def receive_messages():
             message_text = request.get_json()['text']
             user = request.get_json()['user']
             logger.info("POST request on /messages")
-            api_response = processmessage.process_message(message_text, user)
+            api_response = process_message(message_text, user)
             return Response(json.dumps(api_response), status=200, mimetype='application/json')
         except IndexError:
-            status = {}
-            status["error"] = "Index Error"
+            status = {"error": "Index Error"}
             return Response(json.dumps(status), status=400, mimetype='application/json')
         except Exception as e:
-            status = {}
-            status["error"] = str(e)
+            status = {"error": str(e)}
             return Response(json.dumps(status), status=400, mimetype='application/json')
 
     else:
-        status = {}
-        status["error"] = "Wrong Request Type"
+        status = {"error": "Wrong Request Type"}
         return Response(json.dumps(status), status=400, mimetype='application/json')
 
 
@@ -66,7 +60,6 @@ def create_sessions():
             unique_id = {'session_id': str(uuid.uuid1())}
 
             # uuid takes the time stamp and host id to create unique identifier
-
             logger.info(unique_id)
             return Response(json.dumps(unique_id), status=200, mimetype='application/json')
         except Exception as e:
@@ -77,13 +70,14 @@ def create_sessions():
         return Response(json.dumps(status), status=400, mimetype='application/json')
 
 
-@app.route('/newapp', methods=['POST'])
+@app.route('/newapps', methods=['POST'])
 def handle_new_app():
     if request.method == 'POST':
         try:
-            app = request.get_json()['apps'][0]
+            verify_request(request.headers.get('X-Bot-API-Secret'))
+            apps = request.get_json()['apps']
             logger.info("POST request on /messages")
-            api_response = processmessage.store_app_data(app)
+            api_response = store_app_data(apps)
             return Response(json.dumps(api_response), status=200, mimetype='application/json')
 
         except Exception as e:

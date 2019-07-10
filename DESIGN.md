@@ -63,6 +63,10 @@ Request:
 
 - `apps` ([App Model])  New app submitted to the hub
 
+- Headers:
+
+- `X-Bot-API-Secret` : Required token to authenticate request coming from registry api
+
 Response:
 
 - `success Message` (JsonString)

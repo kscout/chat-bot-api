@@ -4,12 +4,12 @@ import os
 
 class Entity:
 
-    def create_entity(self, entityData):
+    def create_entity(self, entity_id, values):
         # :param entityData: json file containing all parameters to define entity
         # :return: json dump of response
 
-        response = config.service.create_entity(entityData)
-        return json.dumps(response)
+        response = config.service.create_entity(workspace_id=os.environ['WORKSPACE_ID'], entity=entity_id, values=values)
+        return response
 
     def list_entities(self):
         # :return: all entities in the given workspace
