@@ -8,7 +8,7 @@
 
 MAKE ?= make
 
-APP ?= bot-api
+APP ?= chat-bot-api
 DOCKER_TAG ?= kscout/${APP}:${ENV}-latest
 
 KUBE_LABELS ?= app=${APP},env=${ENV}
