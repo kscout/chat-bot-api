@@ -4,7 +4,7 @@ global:
   env:
 
   # App being deployed
-  app: bot-api
+  app: chat-bot-api
 
 # HTTP service chart
 http:
