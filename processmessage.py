@@ -30,11 +30,24 @@ def identify_actions(response: json, message: str) -> str:
         raise Exception(status)
 
 
+def format_text(response: json) -> str:
+    multitext = ""
+
+    if 'generic' in response['output']:
+        for i in range(len(response['output']['generic'])):
+            if response['output']['generic'][i]['response_type'] == 'text':
+                multitext += response['output']['generic'][i]['text'] + '<br>'
+
+    return multitext
+
+
 def identify_generic_output(response: json) -> str:
     try:
         if response['output']['generic']:
             if response['output']['generic'][0]['response_type'] == 'text':
-                return json.dumps(response['output']['generic'][0])
+                multitext = format_text(response)
+                text_response = {'response_type': 'text', 'text': multitext}
+                return json.dumps(text_response)
             if response['output']['generic'][0]['options']:
                 return json.dumps(response['output']['generic'][0])
     except Exception as e:
@@ -67,6 +80,8 @@ def process_message(message: str, user):
             response = config.service.message(
                 workspace_id=os.environ['WORKSPACE_ID'],
                 input=message_input, context=context).get_result()
+
+        print(response)
     except Exception as e:
         status = {"error in watson": str(e)}
         raise Exception(status)
@@ -108,7 +123,6 @@ def extract_data(apps):
     taglines = []
 
     for i in range(len(apps)):
-
         app_ids_list.append(apps[i]['app_id'])
         categories_list += apps[i]['categories']
         tags_list += apps[i]['tags']
@@ -162,7 +176,6 @@ def store_app_data(apps):
 
 
 def verify_request(verification_token):
-
     if verification_token != os.environ['X_BOT_API_SECRET']:
         status = {"Unauthorized Request"}
         raise Exception(status)
