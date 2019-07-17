@@ -1,4 +1,4 @@
-from controllers import search
+from controllers import search, log_data
 from config import config
 from config.skeleton import CurrentConversation
 import os
@@ -15,16 +15,20 @@ client = MongoClient(config.db_config["DB_HOST"], config.db_config["DB_PORT"], u
                      password=config.db_config["DB_PASSWORD"], connect=False)  # Connection to MongoDB
 database = config.db_config["DB_NAME"]
 currentConversation = config.db_config["CURRENT"]
+userQuery = config.db_config["USER_QUERY"]
 db = client[database][currentConversation]
+db_query = client[database][userQuery]
 
-
-def identify_actions(response: json, message: str) -> str:
+def identify_actions(response: json, user: str) -> str:
     try:
         if 'actions' in response['output'] and response['output']['actions'][0]['type'] == 'client':
             if 'search' == response['output']['actions'][0]['name']:
-                return search.search_apps(message)
+                return search.search_apps(response['input']['text'])
             if 'deploy' == response['output']['actions'][0]['name']:
                 return deploy.deploy_app(response['context']['app_id'])
+            if 'unknown' == response['output']['actions'][0]['name']:
+                log_data.new_user_query(user, response['input']['text'])
+
     except Exception as e:
         status = {"Exception in identifying actions": str(e)}
         raise Exception(status)
@@ -81,7 +85,6 @@ def process_message(message: str, user):
                 workspace_id=os.environ['WORKSPACE_ID'],
                 input=message_input, context=context).get_result()
 
-        print(response)
     except Exception as e:
         status = {"error in watson": str(e)}
         raise Exception(status)
@@ -105,7 +108,7 @@ def process_message(message: str, user):
         raise Exception(status)
 
     try:
-        actions = identify_actions(response, message)
+        actions = identify_actions(response, user)
         text = identify_generic_output(response)
         if actions and text:
             merged_response = {**json.loads(text), **json.loads(actions)}

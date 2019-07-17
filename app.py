@@ -15,16 +15,33 @@ client = MongoClient(config.db_config["DB_HOST"], config.db_config["DB_PORT"], u
                      password=config.db_config["DB_PASSWORD"], connect=False)  # Connection to MongoDB
 database = config.db_config["DB_NAME"]
 currentConversation = config.db_config["CURRENT"]
+userQuery = config.db_config["USER_QUERY"]
+
 db = client[database][currentConversation]
+db_query = client[database][userQuery]
+
 logger.info("Connection to Database: " + str(db))
 if db.insert_one({'user_id': "xxx_xxx_xxx_xxx_test"}).inserted_id:
     try:
         db.delete_many({'user_id': "xxx_xxx_xxx_xxx_test"})
+        logger.info("Connection to Database Successful")
     except Exception as e:
         logger.info("Error Connecting to Database: " + str(e))
-        logger.info("Connection to Database Successful")
 else:
     logger.info("Error Connecting to Database")
+
+logger.info("Connection to Database: " + str(db_query))
+if db_query.insert_one({'user_id': ["xxx_xxx_xxx_xxx_test"]}).inserted_id:
+    try:
+        db_query.delete_many({'user_id': ["xxx_xxx_xxx_xxx_test"]})
+        logger.info("Connection to Database Successful")
+
+    except Exception as e:
+        logger.info("Error Connecting to Database: " + str(e))
+
+else:
+    logger.info("Error Connecting to Database")
+
 
 app = Flask(__name__)
 CORS(app)
