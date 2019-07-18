@@ -137,12 +137,10 @@ def recreate_single_entity(value_list, entity_name):
     new_entity = Entity()
 
     try:
-        # new_entity.delete_entity(entity_name)
+        new_entity.delete_entity(entity_name)
         entity_values = []
         for i in range(len(value_list)):
-            print(search.process_text(value_list[i]))
             entity_values.append({'value': value_list[i][:64], 'synonyms': list(search.process_text(value_list[i]))})
-        print(entity_values)
         response = new_entity.create_entity(entity_name, entity_values)
         # response = {}
 
@@ -169,8 +167,6 @@ def store_app_data(apps):
 
         # recreate taglines
         recreate_single_entity(taglines, 'tagline')
-
-
 
         return {"message": "Data updated successfully"}
 
