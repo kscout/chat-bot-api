@@ -130,7 +130,6 @@ def extract_data(apps):
         categories_list += apps[i]['categories']
         tags_list += apps[i]['tags']
         taglines.append(apps[i]['tagline'])
-
     return app_ids_list, list(set(categories_list)), list(set(tags_list)), taglines
 
 
@@ -138,14 +137,12 @@ def recreate_single_entity(value_list, entity_name):
     new_entity = Entity()
 
     try:
-        if new_entity.get_entity(entity_name):
-            new_entity.delete_entity(entity_name)
-
+        new_entity.delete_entity(entity_name)
         entity_values = []
-        for i in value_list:
-            entity_values.append({'value': i})
-
+        for i in range(len(value_list)):
+            entity_values.append({'value': value_list[i][:64], 'synonyms': list(search.process_text(value_list[i]))})
         response = new_entity.create_entity(entity_name, entity_values)
+        # response = {}
 
         return response
 
