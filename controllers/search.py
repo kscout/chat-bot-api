@@ -6,7 +6,7 @@ from nltk.stem.wordnet import WordNetLemmatizer as wnl
 import requests
 from training.data import similar_words
 
-CUSTOMIZED_STOP_WORDS: List[str] = ["search", "want", "like", "apps", "deploy", "app","using"]
+CUSTOMIZED_STOP_WORDS: List[str] = ["search", "want", "like", "apps", "deploy", "app","using","get","show","me","us"]
 
 
 # Process text to send to app-api
