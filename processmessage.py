@@ -19,11 +19,12 @@ userQuery = config.db_config["USER_QUERY"]
 db = client[database][currentConversation]
 db_query = client[database][userQuery]
 
+
 def identify_actions(response: json, user: str) -> str:
     try:
         if 'actions' in response['output'] and response['output']['actions'][0]['type'] == 'client':
             if 'search' == response['output']['actions'][0]['name']:
-                return search.search_apps(response['input']['text'])
+                return search.search_apps(response, response['input']['text'])
             if 'deploy' == response['output']['actions'][0]['name']:
                 return deploy.deploy_app(response['context']['app_id'])
             if 'unknown' == response['output']['actions'][0]['name']:
@@ -151,13 +152,30 @@ def recreate_single_entity(value_list, entity_name):
         raise Exception(status)
 
 
+# Create entity with no synonyms for unique app ids
+def recreate_app_ids(value_list, entity_name):
+    new_entity = Entity()
+
+    try:
+        new_entity.delete_entity(entity_name)
+        entity_values = []
+        for i in range(len(value_list)):
+            entity_values.append({'value': value_list[i][:64]})
+        response = new_entity.create_entity(entity_name, entity_values)
+        return response
+
+    except Exception as e:
+        status = {"Entity not recreated": str(e)}
+        raise Exception(status)
+
+
 # function to update tags, categories and ids
 def store_app_data(apps):
     try:
         app_ids_list, categories_list, tags_list, taglines = extract_data(apps)
 
         # recreate app_ids
-        recreate_single_entity(app_ids_list, 'app_ids')
+        recreate_app_ids(app_ids_list, 'app_ids')
 
         # recreate categories
         recreate_single_entity(categories_list, 'categories')

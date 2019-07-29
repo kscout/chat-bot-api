@@ -6,7 +6,8 @@ from nltk.stem.wordnet import WordNetLemmatizer as wnl
 import requests
 from training.data import similar_words
 
-CUSTOMIZED_STOP_WORDS: List[str] = ["search", "want", "like", "apps", "deploy", "app","using","get","show","me","us"]
+CUSTOMIZED_STOP_WORDS: List[str] = ["search", "want", "like", "apps", "deploy", "app", "using", "get", "show", "me",
+                                    "us"]
 
 
 # Process text to send to app-api
@@ -36,8 +37,27 @@ def process_text(message: str):
 
 
 # Search apps using app-api endpoint
-def search_apps(message: str) -> str:
-    list_of_keywords = (process_text(message))
+def search_apps(response, message) -> str:
+    # list_of_keywords = (process_text(message))
+    # context_variables = response['context']
+    #
+    print(response)
+    list_of_keywords = []
+    print(response['context'])
+
+    if response['context']['tags_list']:
+        list_of_keywords += response['context']['tags_list']
+
+    if response['context']['app_list']:
+        list_of_keywords += response['context']['app_list']
+
+    if response['context']['categories_list']:
+        list_of_keywords += response['context']['categories_list']
+
+    if not list_of_keywords :
+        if response['context']['taglines_list']:
+            list_of_keywords += response['context']['taglines_list']
+
     try:
         response = requests.get("https://api.kscout.io/nsearch?query=" + (",".join(list_of_keywords)), verify=False)
         if response.status_code != 200:
