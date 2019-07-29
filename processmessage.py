@@ -41,7 +41,7 @@ def format_text(response: json) -> str:
     if 'generic' in response['output']:
         for i in range(len(response['output']['generic'])):
             if response['output']['generic'][i]['response_type'] == 'text':
-                multitext += response['output']['generic'][i]['text'] + '<br>'
+                multitext += response['output']['generic'][i]['text'] + ' <br> '
 
     return multitext
 
