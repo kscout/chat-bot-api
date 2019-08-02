@@ -1,0 +1,114 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  name: prod-bot-api
+  labels:
+    app: bot-api
+    env: prod
+spec:
+  replicas: 1
+  selector:
+    app: bot-api
+    env: prod
+  triggers:
+    - type: ImageChange
+      imageChangeParams:
+        containerNames:
+          - bot-api
+        from:
+          kind: ImageStreamTag
+          name: bot-api:prod-latest
+  template:
+    metadata:
+      labels:
+        app: bot-api
+        env: prod
+    spec:
+      containers:
+        - name: bot-api
+          image: kscout/bot-api:prod-latest
+          env:
+            - name: APP_HTTP_ADDR
+              value: ":8080"
+            - name: APP_DB_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: prod-bot-api-db-config
+                  key: mongoUser
+            - name: APP_DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-credentials-bot
+                  key: password
+            - name: APP_DB_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: prod-bot-api-db-config
+                  key: mongoDbName
+            - name: APP_DB_HOST
+              value: $(PROD_BOT_API_MONGO_SERVICE_HOST)
+            - name: API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: bot-api-configuration
+                  key: apikey
+            - name: WORKSPACE_ID
+              valueFrom:
+                secretKeyRef:
+                  name: bot-api-configuration
+                  key: workspaceid
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          imagePullPolicy: Always
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: http
+              scheme: HTTP
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: http
+              scheme: HTTP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: prod-bot-api
+  labels:
+    app: bot-api
+    env: prod
+spec:
+  type: ClusterIP
+  selector:
+    app: bot-api
+    env: prod
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: http
+      name: http
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: prod-bot-api
+  labels:
+    app: bot-api
+    env: prod
+spec:
+  host: bot.kscout.io
+  path: /
+  to:
+    kind: Service
+    name: prod-bot-api
+    weight: 100
+  port:
+    targetPort: http
+  tls:
+    termination: edge
+status:
+  ingress:
+    - host: bot.kscout.io
