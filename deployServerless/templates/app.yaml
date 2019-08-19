@@ -1,0 +1,57 @@
+apiVersion: serving.knative.dev/v1alpha1
+kind: Service
+metadata:
+  name: bot-api
+  labels:
+    app: bot-api
+    env: prod
+spec:
+  runLatest:
+    configuration:
+      revisionTemplate:
+        spec:
+          containers:
+            - name: bot-api
+              image: kscout/bot-api:prod-latest
+              env:
+                - name: APP_HTTP_ADDR
+                  value: ":8080"
+                - name: APP_DB_USER
+                  valueFrom:
+                    configMapKeyRef:
+                      name: prod-bot-api-db-config
+                      key: mongoUser
+                - name: APP_DB_PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: mongo-credentials-bot
+                      key: password
+                - name: APP_DB_NAME
+                  valueFrom:
+                    configMapKeyRef:
+                      name: prod-bot-api-db-config
+                      key: mongoDbName
+                - name: APP_DB_HOST
+                  value: $(PROD_BOT_API_MONGO_SERVICE_HOST)
+                - name: API_KEY
+                  valueFrom:
+                    secretKeyRef:
+                      name: bot-api-configuration
+                      key: apikey
+                - name: WORKSPACE_ID
+                  valueFrom:
+                    secretKeyRef:
+                      name: bot-api-configuration
+                      key: workspaceid
+                - name: X_BOT_API_SECRET
+                  valueFrom:
+                    secretKeyRef:
+                      name: bot-api-configuration
+                      key: botapikey
+              resources:
+                requests:
+                  memory: "150Mi"
+                  cpu: "300m"
+                limits:
+                  memory: "400Mi"
+                  cpu: "750m"
