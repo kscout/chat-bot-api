@@ -1,7 +1,7 @@
 apiVersion: serving.knative.dev/v1alpha1
 kind: Service
 metadata:
-  name: prod-bot-api
+  name: bot-api
   labels:
     app: bot-api
     env: prod
@@ -12,7 +12,7 @@ spec:
         spec:
           containers:
             - name: bot-api
-              image: kscout/bot-api:staging-latest
+              image: kscout/bot-api:prod-latest
               env:
                 - name: APP_HTTP_ADDR
                   value: ":8080"
@@ -48,6 +48,14 @@ spec:
                     secretKeyRef:
                       name: bot-api-configuration
                       key: botapikey
+              resources:
+                requests:
+                  memory: "150Mi"
+                  cpu: "300m"
+                limits:
+                  memory: "400Mi"
+                  cpu: "750m"
+
 
 #---
 #apiVersion: v1

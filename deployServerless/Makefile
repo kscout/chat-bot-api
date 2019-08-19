@@ -1,7 +1,7 @@
 .PHONY: deploy
 
 
-NAMESPACE ?= bot-serverless
+NAMESPACE ?= zbs2
 
 # Deploy code to Production:
 deploy:
