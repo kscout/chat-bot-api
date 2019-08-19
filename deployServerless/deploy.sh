@@ -49,20 +49,12 @@ oc project $namespace
 echo "Setting Label for $namespace"
 oc label namespace $namespace knative-eventing-injection=enabled --overwrite
 
-if [ "$type" == "prod" ]; then
-    header_text "Starting Production deployment on OpenShift!"
-    for filename in deploy/templates/*.yaml; do
-        header_text "Applying configuration $filename on $namespace"
-        kubectl -n $namespace apply -f $filename
-    done
-fi
-if [ "$type" == "staging" ]; then
-    header_text "Starting Staging deployment on OpenShift!"
-    for filename in deploy/templates/*.yaml; do
-        header_text "Applying configuration $filename on $namespace"
-        sed 's/prod/staging/ ; s/PROD/STAGING/' $filename | kubectl -n $namespace apply -f -
-    done
-fi
+header_text "Starting Production deployment on OpenShift!"
+for filename in templates/*.yaml; do
+    header_text "Applying configuration $filename on $namespace"
+    kubectl -n $namespace apply -f $filename
+done
+
 
 
 header_text "Starting rollout of $type release"
