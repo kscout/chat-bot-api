@@ -35,7 +35,7 @@ make db
 
 ## Configuration
 For local development, create a `Wastson Assitant` instance in a IBM Cloud Catalog. The instance will be created in a `default` resource group.
-Launch the Watson Assistant using dashboard and import training data available in https://github.com/knative-scout/chat-bot-api/tree/master/training  
+Launch the Watson Assistant using dashboard and import the skill available in https://github.com/knative-scout/chat-bot-api/tree/master/training/data/skill-basic-dialogue.json  
 
 
 Configuration is passed via environment variables.
