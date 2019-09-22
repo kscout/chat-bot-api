@@ -2,7 +2,7 @@ ibm-cloud-sdk-core==0.4.2
 ibm-watson==3.0.4
 joblib==0.13.2
 jsonpickle==1.2
-nltk==3.4.1
+nltk==3.4.5
 numpy==1.16.4
 pymongo==3.8.0
 python-dateutil==2.8.0
