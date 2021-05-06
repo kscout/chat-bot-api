@@ -7,7 +7,7 @@ cffi==1.12.3
 chardet==3.0.4
 Click==7.0
 Flask==1.0.3
-flask-cors==3.0.8
+flask-cors==3.0.9
 idna==2.8
 itsdangerous==1.1.0
 Jinja2==2.10.1
